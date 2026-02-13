@@ -1,0 +1,126 @@
+#
+# iol-xe node definition
+# generated 2024-12-02
+# part of VIRL^2
+#
+id: iol-xe-serial-4eth
+configuration:
+  generator:
+    driver: iosv
+  provisioning:
+    volume_name: disk
+    media_type: raw
+    files:
+      - name: ios_config.txt
+        content: |
+          hostname inserthostname-here
+          !
+          ! In order to avoid entering a configuration dialog on boot, please
+          ! ensure that all interfaces have some IP configuration present here
+          ! such as the example below:
+          !
+          interface range Ethernet0/0-3
+           no ip address
+           shutdown
+          !
+          interface Serial1/0
+           no ip address
+           shutdown
+          !
+          interface Serial1/1
+           no ip address
+           shutdown
+          !
+          interface Serial1/2
+           no ip address
+           shutdown
+          !
+          interface Serial1/3
+           no ip address
+           shutdown
+          !
+          end
+        editable: true
+device:
+  interfaces:
+    has_loopback_zero: true
+    min_count: 8
+    default_count: 8
+    iol_static_ethernets: 4
+    loopback:
+      - Loopback0
+    physical:
+      - Ethernet0/0
+      - Ethernet0/1
+      - Ethernet0/2
+      - Ethernet0/3
+      - Serial1/0
+      - Serial1/1
+      - Serial1/2
+      - Serial1/3
+      - Serial2/0
+      - Serial2/1
+      - Serial2/2
+      - Serial2/3
+      - Serial3/0
+      - Serial3/1
+      - Serial3/2
+      - Serial3/3
+      - Serial4/0
+      - Serial4/1
+      - Serial4/2
+      - Serial4/3
+      - Serial5/0
+      - Serial5/1
+      - Serial5/2
+      - Serial5/3
+      - Serial6/0
+      - Serial6/1
+      - Serial6/2
+      - Serial6/3
+      - Serial7/0
+      - Serial7/1
+      - Serial7/2
+      - Serial7/3
+    serial_ports: 1
+inherited:
+  image:
+    ram: true
+    cpus: false
+    data_volume: false
+    boot_disk_size: false
+    cpu_limit: true
+  node:
+    ram: true
+    cpus: false
+    data_volume: false
+    boot_disk_size: false
+    cpu_limit: true
+general:
+  description: IOL XE Router with 4 serial interfaces
+  nature: router
+  read_only: true
+schema_version: 0.0.1
+sim:
+  linux_native:
+    driver: iol
+    libvirt_domain_driver: iol
+    ram: 1024
+    cpu_limit: 100
+boot:
+  timeout: 30
+  completed:
+    - Press RETURN to get started!
+pyats:
+  os: ios
+  series: iosv
+  config_extract_command: show run
+ui:
+  description: |2-
+
+    1024 MB DRAM, running in a container (4 serial intefaces)
+  group: Cisco
+  icon: router
+  label: IOL (4s)
+  label_prefix: iol-4s-
+  visible: true

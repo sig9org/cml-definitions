@@ -1,0 +1,14 @@
+#
+# Google Chrome stable image definition
+# generated 2025-05-27
+# part of VIRL^2
+#
+
+id: chrome-136-0-7103-113-1
+label: Google Chrome stable 136.0.7103.113-1
+description: Google Chrome stable 136.0.7103.113-1 (Docker)
+node_definition_id: chrome
+disk_image: chrome-136-0-7103-113-1.tar.gz
+read_only: true
+schema_version: 0.0.1
+sha256: b5297d4bc69ba82c501c9276eefee09daac1e5ba679d64e56a1fe7103f83694f

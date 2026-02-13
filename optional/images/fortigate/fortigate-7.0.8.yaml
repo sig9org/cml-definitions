@@ -1,0 +1,7 @@
+id: fortigate-7-0-8
+node_definition_id: fortigate
+description: FortiGate 7.0.8
+label: FortiGate 7.0.8
+disk_image: fortios-7.0.8.qcow2
+read_only: false
+schema_version: 0.0.1

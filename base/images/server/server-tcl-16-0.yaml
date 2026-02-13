@@ -1,0 +1,13 @@
+#
+# server image definition
+# generated 2025-05-08
+# part of VIRL^2
+#
+
+id: server-tcl-16-0
+label: Server TCL 16.0
+description: Tiny Core Linux 16.0
+node_definition_id: server
+disk_image: tcl-16-0.qcow2
+read_only: true
+schema_version: 0.0.1

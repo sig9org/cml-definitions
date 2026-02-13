@@ -1,0 +1,7 @@
+id: ubuntu-24-04-20260131
+node_definition_id: ubuntu
+description: Ubuntu 24.04 - 31 Jan 2026
+label: Ubuntu 24.04 - 31 Jan 2026
+disk_image: noble-server-cloudimg-amd64.qcow2
+read_only: false
+schema_version: 0.0.1

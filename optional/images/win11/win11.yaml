@@ -1,0 +1,7 @@
+id: win11
+node_definition_id: win11
+description: Windows 11
+label: Windows 11
+disk_image: win11.qcow2
+read_only: false
+schema_version: 0.0.1

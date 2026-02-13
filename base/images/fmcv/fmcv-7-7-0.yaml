@@ -1,0 +1,13 @@
+#
+# fmcv image definition
+# generated 2025-05-08
+# part of VIRL^2
+#
+
+id: fmcv-7-7-0
+node_definition_id: fmcv
+description: FMCv 7.7.0
+label: FMCv 7.7.0
+disk_image: Cisco_Secure_FW_Mgmt_Center_Virtual_KVM-7.7.0-91.qcow2
+read_only: true
+schema_version: 0.0.1

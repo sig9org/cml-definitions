@@ -1,0 +1,7 @@
+id: a10vthunder-5-2-1
+node_definition_id: a10vthunder
+description: A10 vThunder 5.2.1
+label: A10 vThunder 5.2.1
+disk_image: vThunder_5_2_1-P11_66.qcow2
+read_only: false
+schema_version: 0.0.1

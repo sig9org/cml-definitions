@@ -1,0 +1,13 @@
+#
+# cat-sdwan-vedge image definition
+# generated 2025-01-05
+# part of VIRL^2
+#
+
+id: cat-sdwan-vedge-20-16-1
+node_definition_id: cat-sdwan-vedge
+description: Cisco Catalyst SD-WAN vEdge 20.16.1
+label: Catalyst SD-WAN vEdge 20.16.1
+disk_image: viptela-bond-20.16.1-genericx86-64.qcow2
+read_only: true
+schema_version: 0.0.1

@@ -1,0 +1,104 @@
+#
+# Identity Services Engine node definition
+# generated 2025-05-27
+# part of VIRL^2
+#
+
+id: ise
+general:
+  description: Cisco Identity Services Engine (ISE)
+  nature: server
+  read_only: true
+device:
+  interfaces:
+    has_loopback_zero: true
+    physical:
+      - eth0
+    serial_ports: 1
+    loopback:
+      - lo
+ui:
+  visible: true
+  description: Cisco Identity Services Engine (ISE)
+  label_prefix: ise-
+  icon: server
+  label: ISE
+sim:
+  linux_native:
+    libvirt_domain_driver: kvm
+    driver: server
+    disk_driver: ide
+    ram: 16384
+    cpus: 16
+    cpu_limit: 100
+    nic_driver: virtio
+    boot_disk_size: 300
+    video:
+      model: vga
+      memory: 1
+boot:
+  timeout: 3600
+inherited:
+  image:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: true
+    boot_disk_size: true
+  node:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: true
+    boot_disk_size: true
+configuration:
+  generator:
+    driver: null
+  provisioning:
+    files:
+      - editable: true
+        name: ise-ztp.conf
+        content: |-
+          hostname=inserthostname
+          ipv4_addr=192.168.255.100
+          ipv4_mask=255.255.255.0
+          ipv4_default_gw=192.168.255.1
+          # IPv6 is optional
+          #ipv6_addr=<IPv6 address>
+          #ipv6_default_gw=<IPv6 gateway address>
+          domain=cisco.com
+          primary_nameserver=8.8.8.8
+          # secondary and tertiary are optional
+          #secondary_nameserver=<IPv4 address>
+          #tertiary_nameserver=<IPv4 address>
+          primary_ntpserver=time.google.com
+          #secondary and tertiary are optional
+          #secondary_ntpserver=<IPv4 address or FQDN of the NTP server>
+          #tertiary_ntpserver=<IPv4 address or FQDN of the NTP server>
+          #timezone=<timezone>
+          #ssh=<true/false>
+          #username=<admin>
+          password=Cisc01@3
+          # Public Key Authentication configuration is optional
+          #public_key=<Public Key>
+          # Repository Configuration are optional
+          #repository_name=<repository name>
+          #repository_protocol=<repository protocol>
+          #repository_server_name=<IPv4 address>
+          repository_path=<repository path>
+          # Patch Information - optional
+          #patch=<patch filename>
+          # HotPatches Information - optional
+          #hotpatches=<hotpatch filename,comma separated list>
+          # services - optional
+          #ers=<true/false>
+          #openapi=<true/false>
+          #pxgrid=<true/false>
+          #pxGrid_Cloud=<true/false>
+          # Skipping specific checks
+          #SkipIcmpChecks=<true/false>
+          #SkipDnsChecks=<true/false>
+          #SkipNtpChecks=<true/false>
+    media_type: ext4
+    volume_name: ISE-ZTP
+schema_version: 0.0.1

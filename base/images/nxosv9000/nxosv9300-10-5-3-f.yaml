@@ -1,0 +1,13 @@
+#
+# nxosv9300 image definition
+# generated 2025-05-08
+# part of VIRL^2
+#
+
+id: nxosv9300-10-5-3-f
+label: NX-OS 9300v 10.5.3.F
+description: NX-OS 9300v 10.5.3.F
+node_definition_id: nxosv9000
+disk_image: nexus9300v64.10.5.3.F.qcow2
+read_only: true
+schema_version: 0.0.1

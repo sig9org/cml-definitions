@@ -1,0 +1,7 @@
+id: asav-9-12-2
+node_definition_id: asav
+description: ASAv 9.12.2
+label: ASAv 9.12.2
+disk_image: asav9-12-2.qcow2
+read_only: false
+schema_version: 0.0.1

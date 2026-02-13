@@ -1,0 +1,73 @@
+id: thousandeyes-va
+sim:
+  linux_native:
+    driver: server
+    libvirt_domain_driver: kvm
+    disk_driver: virtio
+    nic_driver: virtio
+    ram: 2048
+    cpus: 2
+    data_volume: 0
+    boot_disk_size: 64
+inherited:
+  image:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: true
+    boot_disk_size: true
+  node:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: true
+    boot_disk_size: true
+general:
+  nature: server
+  description: Thousandeyes Virtual Appliance
+  read_only: true
+schema_version: 0.0.1
+configuration:
+  generator:
+    driver: ubuntu
+device:
+  interfaces:
+    # 8 should be enough, they are called ens2, ens3, ...
+    # however, those are PCI bus/slot numbers. I guess they are
+    # not static. Depends what device goes before '2'
+    physical:
+      - eth0
+      - eth1
+      - eth2
+      - eth3
+      - eth4
+      - eth5
+      - eth6
+      - eth7
+    has_loopback_zero: false
+    default_count: 1
+    serial_ports: 1
+boot:
+  timeout: 180
+  # seems that without proper meta-data the hostname is not
+  # correctly set at initial boot. It is 'ubuntu'. Also, the
+  # first line is not seen at first boot. Only at second
+  # boot, the correct hostname plus the 'reached target' is
+  # will be set / shown on the console.
+  completed:
+    - "ThousandEyes Virtual Appliance"
+pyats:
+  os: linux
+ui:
+  group: Others
+  icon: server
+  label: ThousandEyes Virtual Appliance
+  label_prefix: te-va-
+  visible: true
+  description: |
+    Thousandeyes Virtual Appliance
+
+    2 GB DRAM, 2 vCPU (can be adjusted)
+
+    WebUI Username / Password:
+    admin / welcome

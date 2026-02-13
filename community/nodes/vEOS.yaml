@@ -1,0 +1,98 @@
+id: vEOS
+general:
+  description: |-
+    Arista vEOS.
+
+    Username: admin Password: <no-password> / admin
+  nature: switch
+  read_only: false
+device:
+  interfaces:
+    has_loopback_zero: true
+    physical:
+      - Ma1
+      - Et1
+      - Et2
+      - Et3
+      - Et4
+      - Et5
+      - Et6
+      - Et7
+      - Et8
+      - Et9
+      - Et10
+      - Et11
+      - Et12
+    serial_ports: 1
+    default_count: 5
+    loopback:
+      - l0
+ui:
+  description: |-
+    Arista vEOS
+
+    2 GB DRAM, 2 vCPU
+
+    [Link](https://www.arista.com/en/cg-veos-router/veos-router-overview)
+  visible: true
+  label_prefix: veos-
+  icon: switch
+  label: vEOS
+sim:
+  linux_native:
+    libvirt_domain_driver: kvm
+    driver: server
+    disk_driver: sata
+    ram: 2048
+    cpus: 2
+    cpu_limit: 100
+    nic_driver: virtio
+boot:
+  timeout: 180
+  uses_regex: false
+inherited:
+  image:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: true
+    boot_disk_size: true
+  node:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: true
+    boot_disk_size: true
+configuration:
+  generator:
+    driver: null
+  provisioning:
+    volume_name: ARISTA_CONFIG_DRIVE
+    media_type: iso
+    files:
+      - name: veos_usr.dat
+        editable: true
+        content: |-
+          %EOS-STARTUP-CONFIG-START%
+          !
+          no aaa root
+          !
+          username admin privilege 15 role network-admin secret 0 admin
+          !
+          switchport default mode access
+          !
+          logging console debugging
+          !
+          hostname inserthostname-here
+          !
+          interface Ethernet1
+          !
+          interface Management1
+          !
+          ip routing
+          !
+          end
+          %EOS-STARTUP-CONFIG-END%
+          %CLOUDHA-CONFIG-START%
+          %CLOUDHA-CONFIG-END%
+schema_version: 0.0.1

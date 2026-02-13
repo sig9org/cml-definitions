@@ -1,0 +1,13 @@
+#
+# cat9000v-q200 image definition
+# generated 2025-05-08
+# part of VIRL^2
+#
+
+id: cat9000v-q200-17-15-03
+label: Cat 9000v Q200 17.15.03
+description: Cat 9000v Q200 17.15.03
+node_definition_id: cat9000v-q200
+disk_image: cat9kv_prd.17.15.03.qcow2
+read_only: true
+schema_version: 0.0.1

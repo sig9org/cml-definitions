@@ -1,0 +1,7 @@
+id: centos-8-4-2105-20210603-0
+node_definition_id: centos
+description: CentOS8 GenericCloud-8.4.2105-20210603.0
+label: CentOS8 GenericCloud-8.4.2105-20210603.0
+disk_image: CentOS-8-GenericCloud-8.4.2105-20210603.0.x86_64.qcow2
+read_only: false
+schema_version: 0.0.1

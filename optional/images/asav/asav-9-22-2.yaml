@@ -1,0 +1,22 @@
+#
+# asav image definition
+# generated 2025-05-08
+# part of VIRL^2
+#
+
+id: asav-9-22-2
+label: ASAv 9.22.2
+description: ASAv 9.22.2
+node_definition_id: asav
+disk_image: asav9-22-2.qcow2
+configuration: |-
+  hostname inserthostname-here
+  !
+  enable password Cisco1@3
+  !
+  end
+pyats:
+  username: cisco
+  password: Cisco1@3
+read_only: false
+schema_version: 0.0.1

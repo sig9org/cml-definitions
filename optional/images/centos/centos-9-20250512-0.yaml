@@ -1,0 +1,7 @@
+id: centos-9-20250512-0
+node_definition_id: centos
+description: CentOS9 GenericCloud-9-20250512.0
+label: CentOS9 GenericCloud-9-20250512.0
+disk_image: CentOS-Stream-GenericCloud-9-20250512.0.x86_64.qcow2
+read_only: false
+schema_version: 0.0.1

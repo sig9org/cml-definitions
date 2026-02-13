@@ -1,0 +1,108 @@
+#
+# ThousandEyes Enterprise Agent node definition
+# generated 2025-05-27
+# part of VIRL^2
+#
+
+id: thousandeyes-ea
+configuration:
+  generator:
+    driver: null
+  provisioning:
+    volume_name: cfg
+    media_type: raw
+    files:
+      - name: boot.sh
+        editable: false
+        content: |-
+          # (sleep 2 && (tail -f /var/log/agent/te-agent.log | tee -a /dev/console) &) &
+          (tail -f /var/log/agent/te-agent.log | tee -a /dev/console) &
+      - name: environment
+        editable: true
+        content: |-
+          # https://docs.thousandeyes.com/product-documentation/global-vantage-points/enterprise-agents/installing/docker-agent-config-options
+          TEAGENT_ACCOUNT_TOKEN=your-token-goes-here
+          TEAGENT_INET=4
+      - name: config.json
+        editable: false
+        content: |-
+          {
+            "docker": {
+              "image": "thousandeyes/enterprise-agent:latest-agent",
+              "caps": [
+                "AUDIT_WRITE",
+                "CHOWN",
+                "DAC_OVERRIDE",
+                "FOWNER",
+                "FSETID",
+                "KILL",
+                "MKNOD",
+                "NET_BIND_SERVICE",
+                "NET_RAW",
+                "SETFCAP",
+                "SETGID",
+                "SETUID",
+                "SETPCAP",
+                "SYS_CHROOT",
+                "IPC_LOCK",
+                "NET_ADMIN",
+                "SYS_ADMIN"
+              ],
+              "misc_args": [
+                "--memory-swap=2g",
+                "--shm-size=512m"
+              ],
+              "mounts": [
+                "type=bind,source=cfg/boot.sh,target=/boot.sh"
+              ]
+            },
+            "shell": "/bin/bash",
+            "day0cmd": [ "/bin/bash", "/boot.sh" ],
+            "busybox": true
+          }
+device:
+  interfaces:
+    has_loopback_zero: false
+    min_count: 1
+    default_count: 1
+    physical:
+      - eth0
+    serial_ports: 2
+inherited:
+  image:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: false
+    boot_disk_size: false
+  node:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: false
+    boot_disk_size: false
+general:
+  description: ThousandEyes Enterprise Agent (Docker)
+  nature: server
+  read_only: true
+schema_version: 0.0.1
+sim:
+  linux_native:
+    cpus: 1
+    ram: 2048
+    driver: server
+    libvirt_domain_driver: docker
+    cpu_limit: 100
+boot:
+  timeout: 30
+  completed:
+    - ThousandEyes Agent starting up
+    - READY
+ui:
+  description: |
+    ThousandEyes Enterprise Agent 1.210.0
+  group: Cisco
+  icon: server
+  label: ThousandEyes Agent
+  label_prefix: te-agent-
+  visible: true

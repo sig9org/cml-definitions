@@ -1,0 +1,14 @@
+#
+# Networking tools node image definition
+# generated 2025-05-27
+# part of VIRL^2
+#
+
+id: net-tools-1-0-0
+label: Networking tools node 1.0.0
+description: Networking tools node 1.0.0 (Docker)
+node_definition_id: net-tools
+disk_image: net-tools-1-0-0.tar.gz
+read_only: true
+schema_version: 0.0.1
+sha256: 87941db3e26adef022e2da35c86f556f4b91483ce01d085f22709a31797b7988

@@ -1,0 +1,8 @@
+id: debian12-20240717-1811
+node_definition_id: debian
+description: Debian 20240717-1811
+label: Debian 20240717-1811
+disk_image: debian-12-generic-amd64-20240717-1811.qcow2
+read_only: false
+disk_subfolder: debian12-20240717-1811
+schema_version: 0.0.1

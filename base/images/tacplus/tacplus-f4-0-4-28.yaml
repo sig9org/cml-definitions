@@ -1,0 +1,14 @@
+#
+# Tacacs plus image definition
+# generated 2025-05-27
+# part of VIRL^2
+#
+
+id: tacplus-f4-0-4-28
+label: Tacacs plus F4.0.4.28
+description: Tacacs plus F4.0.4.28 (Docker)
+node_definition_id: tacplus
+disk_image: tacplus-f4-0-4-28.tar.gz
+read_only: true
+schema_version: 0.0.1
+sha256: b2c4eeeb1ad4d69bcb8e6921825ec92207d04b6460317da8e54b6a6e458487db

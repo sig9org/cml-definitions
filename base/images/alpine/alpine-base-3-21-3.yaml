@@ -1,0 +1,13 @@
+#
+# alpine-base image definition
+# generated 2025-05-08
+# part of VIRL^2
+#
+
+id: alpine-base-3-21-3
+label: Alpine 3.21.3
+description: Alpine Linux and network tools
+node_definition_id: alpine
+disk_image: alpine-base-3-21-3.qcow2
+read_only: true
+schema_version: 0.0.1

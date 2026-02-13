@@ -1,0 +1,14 @@
+#
+# Firefox image definition
+# generated 2025-05-27
+# part of VIRL^2
+#
+
+id: firefox-138-0-4-build1
+label: Firefox browser 138.0.4~build1
+description: Firefox browser 138.0.4~build1 (Docker)
+node_definition_id: firefox
+disk_image: firefox-138-0-4-build1.tar.gz
+read_only: true
+schema_version: 0.0.1
+sha256: adb72ac765fb3044c1be2c8ac95c4d1ca11ddc6ea8280697594deca9d15b67c6

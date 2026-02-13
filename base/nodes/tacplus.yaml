@@ -1,0 +1,123 @@
+#
+# Tacacs plus node definition
+# generated 2025-05-27
+# part of VIRL^2
+#
+
+id: tacplus
+configuration:
+  generator:
+    driver: null
+  provisioning:
+    volume_name: cfg
+    media_type: raw
+    files:
+      - name: config.json
+        editable: false
+        content: |
+          {
+            "docker": {
+              "image": "tacplus:f4.0.4.28",
+              "mounts": [
+                "type=bind,source=cfg/boot.sh,target=/boot.sh",
+                "type=bind,source=cfg/tac_plus.conf,target=/etc/tac_plus.conf"
+              ]
+            },
+            "shell": "/bin/bash",
+            "day0cmd": [ "/bin/bash", "/boot.sh" ],
+            "busybox": true
+          }
+      - name: tac_plus.conf
+        editable: true
+        content: |
+          key = tacacs123
+          accounting file = /var/log/tacplus-acct.log
+          acl = default {
+            permit = 0.0.0.0
+          }
+          host = 0.0.0.0 {
+            prompt = "TACACS+ auth: "
+          }
+          group = netadmin {
+            default service = permit
+            service = exec {
+              priv-lvl = 15
+            }
+          }
+          group = netoper {
+            default service = permit
+            service = exec {
+              priv-lvl = 1
+            }
+          }
+          user = $enab15$ {
+            login = cleartext admin123
+          }
+          user = tacadmin {
+            login = cleartext admin123
+            member = netadmin
+          }
+          user = tacoper {
+            login = cleartext oper123
+            member = netoper
+          }
+      - name: boot.sh
+        editable: true
+        content: |
+          # insert more commands here
+          # ip address add dev eth1 10.0.0.1/24
+          # ip link set dev eth1 up
+          #
+          # keep the next line to indicate that the machine is ready
+          echo "READY" >/dev/console
+          exit 0
+device:
+  interfaces:
+    has_loopback_zero: false
+    min_count: 1
+    default_count: 4
+    management:
+      - eth0
+    physical:
+      - eth0
+      - eth1
+      - eth2
+      - eth3
+    serial_ports: 2
+inherited:
+  image:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: false
+    boot_disk_size: false
+  node:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: false
+    boot_disk_size: false
+general:
+  description: Tacacs plus (Docker)
+  nature: server
+  read_only: true
+schema_version: 0.0.1
+sim:
+  linux_native:
+    cpus: 1
+    ram: 512
+    driver: server
+    libvirt_domain_driver: docker
+    cpu_limit: 100
+boot:
+  timeout: 30
+  completed:
+    - READY
+ui:
+  description: |
+    Tacacs plus F4.0.4.28
+  group: Others
+  icon: server
+  label: TacPlus
+  label_prefix: tacplus-
+  visible: true

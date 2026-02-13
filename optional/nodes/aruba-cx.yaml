@@ -1,0 +1,113 @@
+id: aruba-cx
+sim:
+  linux_native:
+    driver: server
+    libvirt_domain_driver: kvm
+    disk_driver: virtio
+    nic_driver: virtio
+    ram: 4096
+    cpus: 2
+    data_volume: 0
+    boot_disk_size: 64
+inherited:
+  image:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: true
+    boot_disk_size: true
+  node:
+    ram: true
+    cpus: true
+    cpu_limit: true
+    data_volume: true
+    boot_disk_size: true
+general:
+  nature: router
+  description: HPE Aruba Networking CX Switch
+  read_only: false
+schema_version: 0.0.1
+configuration:
+  generator:
+    driver: ubuntu
+  provisioning:
+    volume_name: cidata
+    media_type: iso
+    files:
+      - name: meta-data
+        content: |
+          instance-id: vyos
+          local-hostname: vyos
+        editable: false
+device:
+  interfaces:
+    has_loopback_zero: false
+    default_count: 4
+    physical:
+      - mgmt
+      - 1/1/1
+      - 1/1/2
+      - 1/1/3
+      - 1/1/4
+      - 1/1/5
+      - 1/1/6
+      - 1/1/7
+      - 1/1/8
+      - 1/1/9
+      - 1/1/10
+      - 1/1/11
+      - 1/1/12
+      - 1/1/13
+      - 1/1/14
+      - 1/1/15
+      - 1/1/16
+      - 1/1/17
+      - 1/1/18
+      - 1/1/19
+      - 1/1/20
+      - 1/1/21
+      - 1/1/22
+      - 1/1/23
+      - 1/1/24
+      - 1/1/25
+      - 1/1/26
+      - 1/1/27
+      - 1/1/28
+      - 1/1/29
+      - 1/1/30
+      - 1/1/31
+      - 1/1/32
+      - 1/1/33
+      - 1/1/34
+      - 1/1/35
+      - 1/1/36
+      - 1/1/37
+      - 1/1/38
+      - 1/1/39
+      - 1/1/40
+      - 1/1/41
+      - 1/1/42
+      - 1/1/43
+      - 1/1/44
+      - 1/1/45
+      - 1/1/46
+      - 1/1/47
+      - 1/1/48
+    serial_ports: 1
+boot:
+  timeout: 180
+  completed:
+    - "The End User License Agreement (EULA) and Additional License Authorization"
+ui:
+  group: Others
+  icon: router
+  label: Aruba-CX
+  label_prefix: aruba-cx-
+  visible: true
+  description: |
+    HPE Aruba Networking CX Switch
+
+    2 vCPU, 4 GB DRAM (can be adjusted)
+
+    Username: admin
+    Password: (none))

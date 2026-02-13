@@ -1,0 +1,14 @@
+#
+# Free Range Routing image definition
+# generated 2025-05-27
+# part of VIRL^2
+#
+
+id: frr-10-2-1-r1
+label: Free Range Routing (frr) 10.2.1-r1
+description: Free Range Routing (frr) 10.2.1-r1 (Docker)
+node_definition_id: frr
+disk_image: frr-10-2-1-r1.tar.gz
+read_only: true
+schema_version: 0.0.1
+sha256: 1bd2e82159f15f0eeb97392693b3ece6530bb1b4ca1deb15495fb878f42e5093

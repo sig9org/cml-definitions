@@ -1,0 +1,7 @@
+id: thousandeyes-va-0-256-0
+node_definition_id: thousandeyes-va
+description: ThousandEyes Virtual Appliance 0.256.0
+label: ThousandEyes Virtual Appliance 0.256.0
+disk_image: thousandeyes-va-0.256.0.qcow2
+read_only: false
+schema_version: 0.0.1

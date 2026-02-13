@@ -1,0 +1,13 @@
+#
+# Alpine Linux TRex 2.87 image
+# generated 2025-05-08
+# part of VIRL^2
+#
+
+id: alpine-trex-3-21-3
+label: TRex 3.21.3
+description: TRex 2.87 based on Alpine 3.21.3
+node_definition_id: trex
+disk_image: alpine-trex-3-21-3.qcow2
+read_only: true
+schema_version: 0.0.1

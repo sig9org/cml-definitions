@@ -1,0 +1,13 @@
+#
+# Catalyst 9800 Wireless Controller image definition
+# generated 2025-05-27
+# part of VIRL^2
+#
+
+id: cat9800-17-17-01
+label: Cisco Catalyst 9800 Wireless Controller 17.17.01
+node_definition_id: cat9800
+disk_image: C9800-CL-universalk9.17.17.01.qcow2
+description: Cisco Catalyst 9800 Wireless Controller for Cloud 17.17.01
+read_only: true
+schema_version: 0.0.1
