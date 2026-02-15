@@ -1,7 +1,0 @@
-id: win2025
-node_definition_id: win2025
-description: Windows Server 2025 build.26100.1742
-label: Windows Server 2025 build.26100.1742
-disk_image: 26100.1742.amd64fre.ge_release_svc_refresh.240906-0331_server_serverdatacentereval_en-us.qcow2
-read_only: false
-schema_version: 0.0.1

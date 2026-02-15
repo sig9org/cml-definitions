@@ -266,4 +266,5 @@ fabric.properties
 cml-images.code-workspace
 
 # Project Specific
-cmlutils-cms.md
+cmlutils-cmds.md
+_hidden/

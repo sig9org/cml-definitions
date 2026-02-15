@@ -1,0 +1,16 @@
+id: asav-9-22-1-1
+label: ASAv 9.22.1.1
+description: ASAv 9.22.1.1
+node_definition_id: asav
+disk_image: asav9-22-1-1.qcow2
+configuration: |-
+  hostname inserthostname-here
+  !
+  enable password Cisco1@3
+  !
+  end
+pyats:
+  username: cisco
+  password: Cisco1@3
+read_only: false
+schema_version: 0.0.1

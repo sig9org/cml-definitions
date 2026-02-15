@@ -1,7 +1,0 @@
-id: asav-9-08-2
-node_definition_id: asav
-description: ASAv 9.08.2
-label: ASAv 9.08.2
-disk_image: asav982-console.qcow2
-read_only: false
-schema_version: 0.0.1

@@ -1,7 +1,0 @@
-id: alma-9-7-20251118
-node_definition_id: alma
-description: Alma Linux 9.7 2025/11/18
-label: Alma Linux 9.7 2025/11/18
-disk_image: AlmaLinux-9-GenericCloud-9.7-20251118.x86_64.qcow2
-read_only: false
-schema_version: 0.0.1

@@ -1,0 +1,7 @@
+id: win10
+label: Windows 10
+description: Windows 10
+node_definition_id: win10
+disk_image: win10.qcow2
+read_only: false
+schema_version: 0.0.1

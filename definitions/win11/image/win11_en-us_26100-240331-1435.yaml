@@ -1,0 +1,7 @@
+id: win11_en-us_26100-240331-1435
+label: Windows 11 en-us (26100.240331-1435)
+description: Windows 11 en-us (26100.240331-1435)
+node_definition_id: win11
+disk_image: win11_en-us_26100-240331-1435.qcow2
+read_only: false
+schema_version: 0.0.1

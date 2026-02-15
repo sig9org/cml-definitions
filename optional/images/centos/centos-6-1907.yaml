@@ -1,7 +1,0 @@
-id: centos-6-1907
-node_definition_id: centos
-description: CentOS6 GenericCloud-1907
-label: CentOS6 GenericCloud-1907
-disk_image: CentOS-6-x86_64-GenericCloud-1907.qcow2
-read_only: false
-schema_version: 0.0.1

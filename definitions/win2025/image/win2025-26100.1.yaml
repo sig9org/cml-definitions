@@ -1,0 +1,7 @@
+id: win2025
+label: Windows Server 2025 build.26100.1
+description: Windows Server 2025 build.26100.1
+node_definition_id: win2025
+disk_image: 26100.1.amd64fre.ge_release.240331-1435_server_serverdatacentereval_en-us.qcow2
+read_only: false
+schema_version: 0.0.1

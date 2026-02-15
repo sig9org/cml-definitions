@@ -1,0 +1,7 @@
+id: alma-10-1-20251125
+label: Alma Linux 10.1 2025/11/25
+description: Alma Linux 10.1 2025/11/25
+node_definition_id: alma
+disk_image: AlmaLinux-10-GenericCloud-10.1-20251125.0.x86_64_v2.qcow2
+read_only: false
+schema_version: 0.0.1

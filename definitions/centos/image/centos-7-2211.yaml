@@ -1,0 +1,7 @@
+id: centos-7-2211
+label: CentOS7 GenericCloud-2211
+description: CentOS7 GenericCloud-2211
+node_definition_id: centos
+disk_image: CentOS-7-x86_64-GenericCloud-2211.qcow2
+read_only: false
+schema_version: 0.0.1

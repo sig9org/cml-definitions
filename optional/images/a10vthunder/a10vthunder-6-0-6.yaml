@@ -1,7 +1,0 @@
-id: a10vthunder-6-0-6
-node_definition_id: a10vthunder
-description: A10 vThunder 6.0.6
-label: A10 vThunder 6.0.6
-disk_image: vThunder_6_0_6_83.qcow2
-read_only: false
-schema_version: 0.0.1

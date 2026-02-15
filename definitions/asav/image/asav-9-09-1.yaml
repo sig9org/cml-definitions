@@ -1,0 +1,7 @@
+id: asav-9-09-1
+label: ASAv 9.09.1
+description: ASAv 9.09.1
+node_definition_id: asav
+disk_image: asav9-09-1-console.qcow2
+read_only: false
+schema_version: 0.0.1

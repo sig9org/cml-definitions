@@ -1,8 +1,0 @@
-id: aruba-cx-10-15-0005
-node_definition_id: aruba-cx
-description: Aruba CX 10_15_0005
-label: Aruba CX 10_15_0005
-disk_image: ArubaOS-CX_10_15_0005.qcow2
-read_only: false
-disk_subfolder: aruba-cx-10-15-0005
-schema_version: 0.0.1

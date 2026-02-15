@@ -1,7 +1,0 @@
-id: fortigate-7-6-1
-node_definition_id: fortigate
-description: FortiGate 7.6.1
-label: FortiGate 7.6.1
-disk_image: fortios-7.6.1.qcow2
-read_only: false
-schema_version: 0.0.1
