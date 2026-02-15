@@ -1,0 +1,7 @@
+id: ubuntu-extra-24-04-20260214
+node_definition_id: ubuntu-extra
+description: Ubuntu 24.04 Extra - 14 Feb 2026
+label: Ubuntu 24.04 Extra - 14 Feb 2026
+disk_image: noble-server-cloudimg-amd64-extra-20260214.qcow2
+read_only: false
+schema_version: 0.0.1

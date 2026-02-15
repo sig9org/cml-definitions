@@ -1,0 +1,7 @@
+id: win11_ja-jp_26100-240331-1435
+node_definition_id: win11
+description: Windows 11 ja-jp (26100.240331-1435)
+label: Windows 11 ja-jp (26100.240331-1435)
+disk_image: win11_ja-jp_26100-240331-1435.qcow2
+read_only: false
+schema_version: 0.0.1
