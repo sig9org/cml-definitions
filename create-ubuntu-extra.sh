@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="file"
-DATE="20260214"
+DATE="20260216"
 RESIZE="+1.5G"
 SCRIPT="https://raw.githubusercontent.com/sig9org/cml-definitions/master/definitions/ubuntu-extra/script/ubuntu-extra.sh"
 
