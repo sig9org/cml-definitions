@@ -1,0 +1,7 @@
+id: centos-10-20260223-1
+label: CentOS10 GenericCloud-10-20260223.1
+description: CentOS10 GenericCloud-10-20260223.1
+node_definition_id: centos
+disk_image: CentOS-Stream-GenericCloud-10-20260223.1.x86_64.qcow2
+read_only: false
+schema_version: 0.0.1
