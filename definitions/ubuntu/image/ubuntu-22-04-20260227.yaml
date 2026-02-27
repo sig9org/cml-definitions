@@ -1,0 +1,7 @@
+id: ubuntu-22-04-20260227
+label: Ubuntu 22.04 - 27 Feb 2026
+description: Ubuntu 22.04 - 27 Feb 2026
+node_definition_id: ubuntu
+disk_image: jammy-server-cloudimg-amd64.qcow2
+read_only: false
+schema_version: 0.0.1
