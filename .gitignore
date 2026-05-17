@@ -264,7 +264,3 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 cml-images.code-workspace
-
-# Project Specific
-cmlutils-cmds.md
-_hidden/

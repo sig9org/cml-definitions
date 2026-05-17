@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+dotenv: [".env"]
+
+tasks:
+  default:
+    cmds:
+      - task --list
+
+  _clean:
+    aliases: [c]
+    desc: Clean up
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - task: _clean-mac
+
+  _clean-mac:
+    internal: true
+    platforms: [darwin]
+    cmds:
+      - find . -type d -name ".terraform" -prune -exec rm -rf {} +
+      - find . -name ".DS_Store" -delete
+      - find . -name ".terraform.lock.hcl" -delete
+      - find . -name "terraform.tfstate" -delete
+      - find . -name "terraform.tfstate.backup" -delete
+
+  _license:
+    desc: "Work with product licensing"
+    cmds:
+      - uv run cml license show
+
+  _ls:
+    aliases: [l]
+    desc: "Lists running labs and optionally those in the cache"
+    cmds:
+      - uv run cml ls
+
+  fortigate:
+    desc: "Import FortiGate node definition"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/fortigate/node/fortigate.yaml
+
+  fortigate-7.0.19:
+    desc: "Import FortiGate 7.0.19 image"
+    cmds:
+      - uv run cml definitions images import image-file -f fortinet/fortigate/fortios-7.0.19.qcow2
+      - uv run cml definitions images import definition -f definitions/fortigate/image/fortigate-7.0.19.yaml

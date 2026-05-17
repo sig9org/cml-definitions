@@ -4,4 +4,6 @@ version = "0.1.0"
 description = "CML Node and Image Definitions"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = ["cmlutils>=2.5.0"]
+dependencies = [
+    "cmlutils==2.6.1",
+]
