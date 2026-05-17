@@ -43,6 +43,28 @@ tasks:
       - uv run cml definitions images import image-file -f {{.IMG_FILE}}
       - uv run cml definitions images import definition -f {{.IMG_DEF}}
 
+  # Aruba-CX
+
+  aruba-cx:
+    desc: "Import Aruba-CX node definition"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/aruba-cx/node/aruba-cx.yaml
+
+  aruba-cx-image:
+    internal: true
+    cmds:
+      - task: upload-iamge
+        vars:
+          IMG_FILE: "{{.DOC_ROOT}}/aruba-cx/ArubaOS-CX_{{.IMG_VER}}.qcow2"
+          IMG_DEF: "definitions/aruba-cx/image/aruba-cx_{{.IMG_VER}}.yaml"
+
+  aruba-cx-10_04_1000:
+    desc: "Import Aruba-CX 10_04_1000 image"
+    cmds:
+      - task: aruba-cx-image
+        vars:
+          IMG_VER: "10_04_1000"
+
   # FortiGate
 
   fortigate:
