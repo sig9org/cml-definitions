@@ -53,8 +53,8 @@ tasks:
     cmds:
       - task: upload-iamge
         vars:
-          IMG_FILE: "{{.DOCROOT}}fortinet/fortigate/fortios-{{.IMAGEVER}}.qcow2"
-          IMG_DEF: "definitions/fortigate/image/fortigate-{{.IMAGEVER}}.yaml"
+          IMG_FILE: "{{.DOC_ROOT}}fortinet/fortigate/fortios-{{.IMG_VER}}.qcow2"
+          IMG_DEF: "definitions/fortigate/image/fortigate-{{.IMG_VER}}.yaml"
 
   fortigate-7.0.1:
     desc: "Import FortiGate 7.0.1 image"
