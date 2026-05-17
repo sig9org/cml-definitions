@@ -37,13 +37,42 @@ tasks:
     cmds:
       - uv run cml ls
 
+  upload-iamge:
+    internal: true
+    cmds:
+      - uv run cml definitions images import image-file -f {{.IMG_FILE}}
+      - uv run cml definitions images import definition -f {{.IMG_DEF}}
+
   fortigate:
     desc: "Import FortiGate node definition"
     cmds:
       - uv run cml definitions nodes import -f definitions/fortigate/node/fortigate.yaml
 
+  fortigate-image:
+    internal: true
+    cmds:
+      - task: upload-iamge
+        vars:
+          IMG_FILE: "{{.DOCROOT}}fortinet/fortigate/fortios-{{.IMAGEVER}}.qcow2"
+          IMG_DEF: "definitions/fortigate/image/fortigate-{{.IMAGEVER}}.yaml"
+
+  fortigate-7.0.1:
+    desc: "Import FortiGate 7.0.1 image"
+    cmds:
+      - task: fortigate-image
+        vars:
+          IMG_VER: "7.0.1"
+
+  fortigate-7.0.6:
+    desc: "Import FortiGate 7.0.6 image"
+    cmds:
+      - task: fortigate-image
+        vars:
+          IMG_VER: "7.0.6"
+
   fortigate-7.0.19:
     desc: "Import FortiGate 7.0.19 image"
     cmds:
-      - uv run cml definitions images import image-file -f fortinet/fortigate/fortios-7.0.19.qcow2
-      - uv run cml definitions images import definition -f definitions/fortigate/image/fortigate-7.0.19.yaml
+      - task: fortigate-image
+        vars:
+          IMG_VER: "7.0.19"
