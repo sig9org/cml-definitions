@@ -87,6 +87,28 @@ tasks:
         vars:
           IMG_VER: "10_04_1000"
 
+  # F5 BIG-IP VE
+
+  f5-bigip-ve:
+    desc: "Import F5 BIG-IP VE node definition"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/f5-bigip-ve/node/f5-bigip-ve.yaml
+
+  f5-bigip-ve-image:
+    internal: true
+    cmds:
+      - task: upload-iamge
+        vars:
+          IMG_FILE: "{{.DOC_ROOT}}/f5-bigip-ve/BIG-IP-{{.IMG_VER}}.qcow2"
+          IMG_DEF: "definitions/f5-bigip-ve/image/f5-bigip-ve-{{.IMG_VER}}.yaml"
+
+  f5-bigip-ve-17.0.0-0.0.22:
+    desc: "Import F5 BIG-IP VE 17.0.0-0.0.22 image"
+    cmds:
+      - task: f5-bigip-ve-image
+        vars:
+          IMG_VER: "17.0.0-0.0.22"
+
   # FortiGate
 
   fortigate:

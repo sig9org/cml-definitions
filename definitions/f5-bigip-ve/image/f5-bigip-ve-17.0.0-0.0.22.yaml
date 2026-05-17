@@ -1,0 +1,7 @@
+id: bigip-17-0-0-0-0-22
+node_definition_id: f5-bigip-ve
+description: BIGIP-17.0.0-0.0.22
+label: BIGIP-17.0.0-0.0.22
+disk_image: BIGIP-17.0.0-0.0.22.qcow2
+read_only: false
+schema_version: 0.0.1
