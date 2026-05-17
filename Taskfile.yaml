@@ -99,7 +99,7 @@ tasks:
     cmds:
       - task: upload-iamge
         vars:
-          IMG_FILE: "{{.DOC_ROOT}}/f5-bigip-ve/BIG-IP-{{.IMG_VER}}.qcow2"
+          IMG_FILE: "{{.DOC_ROOT}}/f5-bigip-ve/BIGIP-{{.IMG_VER}}.qcow2"
           IMG_DEF: "definitions/f5-bigip-ve/image/f5-bigip-ve-{{.IMG_VER}}.yaml"
 
   f5-bigip-ve-17.0.0-0.0.22:
