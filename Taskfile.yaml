@@ -43,6 +43,28 @@ tasks:
       - uv run cml definitions images import image-file -f {{.IMG_FILE}}
       - uv run cml definitions images import definition -f {{.IMG_DEF}}
 
+  # A10 vThunder
+
+  a10vthunder:
+    desc: "Import A10 vThunder node definition"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/a10vthunder/node/a10vthunder.yaml
+
+  a10vthunder-image:
+    internal: true
+    cmds:
+      - task: upload-iamge
+        vars:
+          IMG_FILE: "{{.DOC_ROOT}}/a10vthunder/vThunder_{{.IMG_VER}}.qcow2"
+          IMG_DEF: "definitions/a10vthunder/image/a10vthunder_{{.IMG_VER}}.yaml"
+
+  a10vthunder_6_0_6_83:
+    desc: "Import A10 vThunder 6.0.6.83 image"
+    cmds:
+      - task: a10vthunder-image
+        vars:
+          IMG_VER: "6_0_6_83"
+
   # Aruba-CX
 
   aruba-cx:
