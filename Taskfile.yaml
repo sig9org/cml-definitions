@@ -245,6 +245,13 @@ tasks:
           IMG_FILE: "{{.DOC_ROOT}}/juniper/vJunos-switch-{{.IMG_VER}}.qcow2"
           IMG_DEF: "definitions/vjunos-switch/image/vjunos-switch-{{.IMG_VER}}.yaml"
 
+  vjunos-switch-24.4R1.9:
+    desc: "Import vJunos-Switch 24.4R1.9 image"
+    cmds:
+      - task: vjunos-switch-image
+        vars:
+          IMG_VER: "24.4R1.9"
+
   vjunos-switch-25.2R1.9:
     desc: "Import vJunos-Switch 25.2R1.9 image"
     cmds:

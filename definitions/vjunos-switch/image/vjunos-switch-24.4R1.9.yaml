@@ -1,0 +1,7 @@
+id: vjunos-switch-24.4R1.9
+node_definition_id: vjunos-switch
+description: vJunos Switch 24.4R1.9
+label: vJunos Switch 24.4R1.9
+disk_image: vJunos-switch-24.4R1.9.qcow2
+read_only: false
+schema_version: 0.0.1
