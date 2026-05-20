@@ -230,6 +230,18 @@ tasks:
         vars:
           IMG_VER: "0.263.0"
 
+  # Ubuntu-Extra
+
+  ubuntu-extra:
+    desc: "Import Ubuntu-Extra node definition"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/ubuntu-extra/node/ubuntu-extra.yaml
+
+  ubuntu-extra-24-04-20260323:
+    cmds:
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64-extra-20260323.qcow2
+      - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-24-04-20260323.yaml
+
   # vJunos-Switch
 
   vjunos-switch:
