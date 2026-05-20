@@ -46,7 +46,7 @@ tasks:
   # A10 vThunder
 
   a10vthunder:
-    desc: "Import A10 vThunder node definition"
+    desc: "A10 vThunder (Node)"
     cmds:
       - uv run cml definitions nodes import -f definitions/a10vthunder/node/a10vthunder.yaml
 
@@ -59,7 +59,7 @@ tasks:
           IMG_DEF: "definitions/a10vthunder/image/a10vthunder_{{.IMG_VER}}.yaml"
 
   a10vthunder_6_0_6_83:
-    desc: "Import A10 vThunder 6.0.6.83 image"
+    desc: "A10 vThunder 6.0.6.83"
     cmds:
       - task: a10vthunder-image
         vars:
@@ -68,7 +68,7 @@ tasks:
   # Aruba-CX
 
   aruba-cx:
-    desc: "Import Aruba-CX node definition"
+    desc: "Aruba-CX (Node)"
     cmds:
       - uv run cml definitions nodes import -f definitions/aruba-cx/node/aruba-cx.yaml
 
@@ -81,7 +81,7 @@ tasks:
           IMG_DEF: "definitions/aruba-cx/image/aruba-cx_{{.IMG_VER}}.yaml"
 
   aruba-cx-10_04_1000:
-    desc: "Import Aruba-CX 10_04_1000 image"
+    desc: "Aruba-CX 10_04_1000"
     cmds:
       - task: aruba-cx-image
         vars:
@@ -90,7 +90,7 @@ tasks:
   # F5 BIG-IP VE
 
   f5-bigip-ve:
-    desc: "Import F5 BIG-IP VE node definition"
+    desc: "F5 BIG-IP VE (Node)"
     cmds:
       - uv run cml definitions nodes import -f definitions/f5-bigip-ve/node/f5-bigip-ve.yaml
 
@@ -103,7 +103,7 @@ tasks:
           IMG_DEF: "definitions/f5-bigip-ve/image/f5-bigip-ve-{{.IMG_VER}}.yaml"
 
   f5-bigip-ve-17.0.0-0.0.22:
-    desc: "Import F5 BIG-IP VE 17.0.0-0.0.22 image"
+    desc: "F5 BIG-IP VE 17.0.0-0.0.22"
     cmds:
       - task: f5-bigip-ve-image
         vars:
@@ -112,7 +112,7 @@ tasks:
   # FortiGate
 
   fortigate:
-    desc: "Import FortiGate node definition"
+    desc: "FortiGate (Node)"
     cmds:
       - uv run cml definitions nodes import -f definitions/fortigate/node/fortigate.yaml
 
@@ -125,84 +125,84 @@ tasks:
           IMG_DEF: "definitions/fortigate/image/fortigate-{{.IMG_VER}}.yaml"
 
   fortigate-7.0.1:
-    desc: "Import FortiGate 7.0.1 image"
+    desc: "FortiGate 7.0.1"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.0.1"
 
   fortigate-7.0.6:
-    desc: "Import FortiGate 7.0.6 image"
+    desc: "FortiGate 7.0.6"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.0.6"
 
   fortigate-7.0.8:
-    desc: "Import FortiGate 7.0.8 image"
+    desc: "FortiGate 7.0.8"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.0.8"
 
   fortigate-7.0.19:
-    desc: "Import FortiGate 7.0.19 image"
+    desc: "FortiGate 7.0.19"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.0.19"
 
   fortigate-7.2.0:
-    desc: "Import FortiGate 7.2.0 image"
+    desc: "FortiGate 7.2.0"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.2.0"
 
   fortigate-7.2.2:
-    desc: "Import FortiGate 7.2.2 image"
+    desc: "FortiGate 7.2.2"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.2.2"
 
   fortigate-7.2.4:
-    desc: "Import FortiGate 7.2.4 image"
+    desc: "FortiGate 7.2.4"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.2.4"
 
   fortigate-7.4.1:
-    desc: "Import FortiGate 7.4.1 image"
+    desc: "FortiGate 7.4.1"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.4.1"
 
   fortigate-7.4.4:
-    desc: "Import FortiGate 7.4.4 image"
+    desc: "FortiGate 7.4.4"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.4.4"
 
   fortigate-7.4.11:
-    desc: "Import FortiGate 7.4.11 image"
+    desc: "FortiGate 7.4.11"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.4.11"
 
   fortigate-7.6.1:
-    desc: "Import FortiGate 7.6.1 image"
+    desc: "FortiGate 7.6.1"
     cmds:
       - task: fortigate-image
         vars:
           IMG_VER: "7.6.1"
 
   fortigate-7.6.6:
-    desc: "Import FortiGate 7.6.6 image"
+    desc: "FortiGate 7.6.6"
     cmds:
       - task: fortigate-image
         vars:
@@ -211,7 +211,7 @@ tasks:
   # ThousandEyes-VA
 
   thousandeyes-va:
-    desc: "Import ThousandEyes node definition"
+    desc: "ThousandEyes-VA (Node)"
     cmds:
       - uv run cml definitions nodes import -f definitions/thousandeyes-va/node/thousandeyes-va.yaml
 
@@ -224,7 +224,7 @@ tasks:
           IMG_DEF: "definitions/thousandeyes-va/image/thousandeyes-va-{{.IMG_VER}}.yaml"
 
   thousandeyes-va-0.263.0:
-    desc: "Import ThousandEyes-VA 0.263.0 image"
+    desc: "ThousandEyes-VA 0.263.0"
     cmds:
       - task: thousandeyes-va-image
         vars:
@@ -233,11 +233,12 @@ tasks:
   # Ubuntu-Extra
 
   ubuntu-extra:
-    desc: "Import Ubuntu-Extra node definition"
+    desc: "Ubuntu-Extra (Node)"
     cmds:
       - uv run cml definitions nodes import -f definitions/ubuntu-extra/node/ubuntu-extra.yaml
 
   ubuntu-extra-24-04-20260323:
+    desc: "Ubuntu-Extra 24-04-20260323"
     cmds:
       - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64-extra-20260323.qcow2
       - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-24-04-20260323.yaml
@@ -245,7 +246,7 @@ tasks:
   # vJunos-Switch
 
   vjunos-switch:
-    desc: "Import vJunos-Switch node definition"
+    desc: "vJunos-Switch (Node)"
     cmds:
       - uv run cml definitions nodes import -f definitions/vjunos-switch/node/vjunos-switch.yaml
 
@@ -258,15 +259,44 @@ tasks:
           IMG_DEF: "definitions/vjunos-switch/image/vjunos-switch-{{.IMG_VER}}.yaml"
 
   vjunos-switch-24.4R1.9:
-    desc: "Import vJunos-Switch 24.4R1.9 image"
+    desc: "vJunos-Switch 24.4R1.9"
     cmds:
       - task: vjunos-switch-image
         vars:
           IMG_VER: "24.4R1.9"
 
   vjunos-switch-25.2R1.9:
-    desc: "Import vJunos-Switch 25.2R1.9 image"
+    desc: "vJunos-Switch 25.2R1.9"
     cmds:
       - task: vjunos-switch-image
         vars:
           IMG_VER: "25.2R1.9"
+
+  # Windows11
+
+  win11:
+    desc: "Windows11 (Node)"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/win11/node/win11.yaml
+
+  win11-image:
+    internal: true
+    cmds:
+      - task: upload-iamge
+        vars:
+          IMG_FILE: "{{.DOC_ROOT}}/windows/11_{{.IMG_VER}}.qcow2"
+          IMG_DEF: "definitions/win11/image/win11_{{.IMG_VER}}.yaml"
+
+  win11_en-us_26100-240331-1435:
+    desc: "Windows11 en-us 26100-240331-1435"
+    cmds:
+      - task: win11-image
+        vars:
+          IMG_VER: "en-us_26100-240331-1435"
+
+  win11_ja-jp_26100-240331-1435:
+    desc: "Windows11 ja-jp 26100-240331-1435"
+    cmds:
+      - task: win11-image
+        vars:
+          IMG_VER: "ja-jp_26100-240331-1435"
