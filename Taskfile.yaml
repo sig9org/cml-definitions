@@ -230,6 +230,26 @@ tasks:
         vars:
           IMG_VER: "0.263.0"
 
+  # Ubuntu
+
+  ubuntu-22-04-20260515:
+    desc: "Ubuntu 22-04-20260515"
+    cmds:
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/jammy-server-cloudimg-amd64.qcow2
+      - uv run cml definitions images import definition -f definitions/ubuntu/image/ubuntu-22-04-20260515.yaml
+
+  ubuntu-24-04-20260518:
+    desc: "Ubuntu 24-04-20260518"
+    cmds:
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64.qcow2
+      - uv run cml definitions images import definition -f definitions/ubuntu/image/ubuntu-24-04-20260518.yaml
+
+  ubuntu-26-04-20260520:
+    desc: "Ubuntu 26-04-20260520"
+    cmds:
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/resolute-server-cloudimg-amd64.img
+      - uv run cml definitions images import definition -f definitions/ubuntu/image/ubuntu-26-04-20260520.yaml
+
   # Ubuntu-Extra
 
   ubuntu-extra:
@@ -243,11 +263,11 @@ tasks:
       - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64-extra-20260323.qcow2
       - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-24-04-20260323.yaml
 
-  ubuntu-extra-24-04-20260515:
-    desc: "Ubuntu-Extra 24-04-20260515"
+  ubuntu-extra-24-04-20260518:
+    desc: "Ubuntu-Extra 24-04-20260518"
     cmds:
-      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64-extra-20260515.qcow2
-      - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-24-04-20260515.yaml
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64-extra-20260518.qcow2
+      - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-24-04-20260518.yaml
 
   # vJunos-Switch
 
