@@ -269,6 +269,12 @@ tasks:
       - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64-extra-20260518.qcow2
       - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-24-04-20260518.yaml
 
+  ubuntu-extra-26-04-20260520:
+    desc: "Ubuntu-Extra 26-04-20260520"
+    cmds:
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/resolute-server-cloudimg-amd64-extra-20260520.qcow2
+      - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-26-04-20260520.yaml
+
   # vJunos-Switch
 
   vjunos-switch:

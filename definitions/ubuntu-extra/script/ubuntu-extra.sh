@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Install task repository
+curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | sudo -E bash
+
 # Install basic packages
 apt-get update
 DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -8,6 +11,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
   eza \
   fping \
   git \
+  gnupg \
   gpg \
   neovim \
   nmap \
@@ -15,14 +19,25 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
   ripgrep \
   snmp \
   snmp-mibs-downloader \
+  software-properties-common \
   sudo \
+  task \
   traceroute \
   tree \
   tshark \
   unzip \
   wget \
+  xh \
   zip \
   zsh
+
+# Install Terraform
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+    gpg --dearmor | \
+    tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+apt-get update
+apt-get install -y terraform
 
 # Install Docker
 curl -fsSL https://get.docker.com | /bin/sh
@@ -121,13 +136,8 @@ EOF
 curl -L https://github.com/sig9org/uncmnt/releases/download/v0.0.2/uncmnt_v0.0.2_linux_amd64 -o /usr/local/bin/uncmnt && \
 chmod 755 /usr/local/bin/uncmnt
 
-# Install mise
-apt update
-install -dm 755 /etc/apt/keyrings
-wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
-echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | tee /etc/apt/sources.list.d/mise.list
-apt update
-apt install -y mise
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # zsh & oh-my-zsh
 chsh -s /bin/zsh
@@ -174,9 +184,6 @@ source $ZSH/oh-my-zsh.sh
 # History
 setopt hist_ignore_dups
 
-# mise
-eval "$(mise activate zsh)"
-
 # peco
 function peco-select-history() {
   BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
@@ -211,25 +218,6 @@ alias tfd="terraform destroy -auto-approve"
 alias vi="nvim"
 alias vim="nvim"
 EOL
-
-# Install tools using mise
-mise install python@latest
-mise use -g python@latest
-
-mise install task@latest
-mise use -g task@latest
-
-mise install terraform@latest
-mise use -g terraform@latest
-
-mise install ruff@latest
-mise use -g ruff@latest
-
-mise install uv@latest
-mise use -g uv@latest
-
-mise install xh@latest
-mise use -g xh@latest
 
 rm -rf /usr/local/bin/init-img.sh
 EOF
