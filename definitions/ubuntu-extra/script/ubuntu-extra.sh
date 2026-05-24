@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Install task repository
-curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | sudo -E bash
+curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | bash
 
 # Install basic packages
-apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get install -y \
+apt update
+DEBIAN_FRONTEND=noninteractive apt install -y \
   axel \
   curl \
   eza \
@@ -17,6 +17,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
   nmap \
   peco \
   ripgrep \
+  skopeo \
   snmp \
   snmp-mibs-downloader \
   software-properties-common \
@@ -36,8 +37,8 @@ wget -O- https://apt.releases.hashicorp.com/gpg | \
     gpg --dearmor | \
     tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
-apt-get update
-apt-get install -y terraform
+apt update
+apt install -y terraform
 
 # Install Docker
 curl -fsSL https://get.docker.com | /bin/sh
@@ -137,7 +138,7 @@ curl -L https://github.com/sig9org/uncmnt/releases/download/v0.0.2/uncmnt_v0.0.2
 chmod 755 /usr/local/bin/uncmnt
 
 # Install uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/usr/local/bin" UV_NO_MODIFY_PATH=1 sh
 
 # zsh & oh-my-zsh
 chsh -s /bin/zsh
