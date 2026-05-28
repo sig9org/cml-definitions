@@ -230,6 +230,13 @@ tasks:
         vars:
           IMG_VER: "0.263.0"
 
+  thousandeyes-va-0.264.0:
+    desc: "ThousandEyes-VA 0.264.0"
+    cmds:
+      - task: thousandeyes-va-image
+        vars:
+          IMG_VER: "0.264.0"
+
   # Ubuntu
 
   ubuntu-22-04-20260515:
