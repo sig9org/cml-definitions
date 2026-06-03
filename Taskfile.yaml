@@ -29,12 +29,12 @@ tasks:
   _create-ubuntu-extra:
     desc: "Create Ubuntu-Extra"
     cmds:
-      - create-custom-ubuntu.sh extra
+      - ./create-custom-ubuntu.sh extra
 
   _create-ubuntu-mgmt:
     desc: "Create Ubuntu-MGMT"
     cmds:
-      - create-custom-ubuntu.sh mgmt
+      - ./create-custom-ubuntu.sh mgmt
 
   _license:
     desc: "Work with product licensing"

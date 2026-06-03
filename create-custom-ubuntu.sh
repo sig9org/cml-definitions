@@ -4,7 +4,7 @@ DIR="file"
 CODENAME="resolute"
 DATE="20260520"
 RESIZE="+1.5G"
-TYPE=$0
+TYPE=$1
 SCRIPT="https://raw.githubusercontent.com/sig9org/cml-definitions/master/definitions/ubuntu-${TYPE}/script/ubuntu-${TYPE}.sh"
 
 echo "############################################################"
