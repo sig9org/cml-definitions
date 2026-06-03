@@ -363,7 +363,7 @@ mkdir -p /usr/share/goflow2
 cat << EOF > /etc/default/goflow2
 GOFLOW2_ARGS="-listen sflow://:6343,netflow://:9995 -transport.file /var/log/goflow2.log"
 EOF
-systemctl restart --now goflow2.service
+systemctl enable --now goflow2.service
 
 # Clean up
 apt clean all
