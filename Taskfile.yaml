@@ -26,6 +26,16 @@ tasks:
       - find . -name "terraform.tfstate" -delete
       - find . -name "terraform.tfstate.backup" -delete
 
+  _create-ubuntu-extra:
+    desc: "Create Ubuntu-Extra"
+    cmds:
+      - create-custom-ubuntu.sh extra
+
+  _create-ubuntu-mgmt:
+    desc: "Create Ubuntu-MGMT"
+    cmds:
+      - create-custom-ubuntu.sh mgmt
+
   _license:
     desc: "Work with product licensing"
     cmds:
@@ -281,6 +291,19 @@ tasks:
     cmds:
       - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/resolute-server-cloudimg-amd64-extra-20260520.qcow2
       - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-26-04-20260520.yaml
+
+  # Ubuntu-MGMT
+
+  ubuntu-mgmt:
+    desc: "Ubuntu-MGMT (Node)"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/ubuntu-mgmt/node/ubuntu-mgmt.yaml
+
+  ubuntu-mgmt-26-04-20260520:
+    desc: "Ubuntu-MGMT 26-04-20260520"
+    cmds:
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/resolute-server-cloudimg-amd64-mgmt-20260520.qcow2
+      - uv run cml definitions images import definition -f definitions/ubuntu-mgmt/image/ubuntu-mgmt-26-04-20260520.yaml
 
   # vJunos-Switch
 
