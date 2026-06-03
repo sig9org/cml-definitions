@@ -135,9 +135,8 @@ rm /var/www/html/index.nginx-debian.html
 cat << EOF > /var/www/html/index.html
 Hello, World!
 EOF
-
-# Create dummy file
 truncate -s 10M /var/www/html/sample.bin
+chown -R www-data:www-data /var/www/html
 
 # chrony (NTP)
 cat << EOF > /etc/chrony/chrony.conf
@@ -175,13 +174,11 @@ domain-needed
 domain=example.net
 enable-tftp
 expand-hosts
-interface=ens2
-listen-address=127.0.0.1
 local=/example.net/
 log-facility=/var/log/dnsmasq.log
 log-queries
 resolv-file=/etc/dnsmasq_resolv.conf
-tftp-root=/var/www/html
+tftp-root=/var/tftp
 tftp-secure
 EOF
 
@@ -190,6 +187,10 @@ nameserver 1.1.1.1
 nameserver 1.0.0.1
 EOF
 systemctl restart dnsmasq.service
+
+mkdir -p /var/tftp
+truncate -s 10M /var/tftp/sample.bin
+chown -R dnsmasq:nogroup /var/tftp
 
 # rsyslog (Syslog)
 mkdir -p /var/log/rsyslog
