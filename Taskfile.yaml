@@ -255,9 +255,9 @@ tasks:
     desc: "Ubuntu Image Download"
     cmds:
       - mkdir -p file/
-      - curl --output-dir file -LO https://cloud-images.ubuntu.com/jammy/{{.UBUNTU22}}/jammy-server-cloudimg-amd64.qcow2
-      - curl --output-dir file -LO https://cloud-images.ubuntu.com/noble/{{.UBUNTU24}}/noble-server-cloudimg-amd64.qcow2
-      - curl --output-dir file -LO https://cloud-images.ubuntu.com/resolute/{{.UBUNTU26}}/resolute-server-cloudimg-amd64.qcow2
+      - axel https://cloud-images.ubuntu.com/jammy/{{.UBUNTU22}}/jammy-server-cloudimg-amd64.img -o file/jammy-server-cloudimg-amd64.qcow2
+      - axel https://cloud-images.ubuntu.com/noble/{{.UBUNTU24}}/noble-server-cloudimg-amd64.img -o file/noble-server-cloudimg-amd64.qcow2
+      - axel https://cloud-images.ubuntu.com/resolute/{{.UBUNTU26}}/resolute-server-cloudimg-amd64.img -o file/resolute-server-cloudimg-amd64.qcow2
 
   ubuntu-22-04-latest:
     desc: "Ubuntu 22-04-{{.UBUNTU22}}"
