@@ -254,6 +254,7 @@ tasks:
   ubuntu-download:
     desc: "Ubuntu Image Download"
     cmds:
+      - rm -rf file/
       - mkdir -p file/
       - axel https://cloud-images.ubuntu.com/jammy/{{.UBUNTU22}}/jammy-server-cloudimg-amd64.img -o file/jammy-server-cloudimg-amd64.qcow2
       - axel https://cloud-images.ubuntu.com/noble/{{.UBUNTU24}}/noble-server-cloudimg-amd64.img -o file/noble-server-cloudimg-amd64.qcow2
