@@ -4,6 +4,11 @@ version: "3"
 
 dotenv: [".env"]
 
+vars:
+  UBUNTU22: "20260617"
+  UBUNTU24: "20260615"
+  UBUNTU26: "20260620"
+
 tasks:
   default:
     cmds:
@@ -26,16 +31,6 @@ tasks:
       - find . -name "terraform.tfstate" -delete
       - find . -name "terraform.tfstate.backup" -delete
 
-  _create-ubuntu-extra:
-    desc: "Create Ubuntu-Extra"
-    cmds:
-      - ./create-custom-ubuntu.sh extra
-
-  _create-ubuntu-mgmt:
-    desc: "Create Ubuntu-MGMT"
-    cmds:
-      - ./create-custom-ubuntu.sh mgmt
-
   _license:
     desc: "Work with product licensing"
     cmds:
@@ -46,6 +41,13 @@ tasks:
     desc: "Lists running labs and optionally those in the cache"
     cmds:
       - uv run cml ls
+
+  _upgrade:
+    aliases: [u]
+    desc: Upgrade
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - uv sync --upgrade
 
   upload-iamge:
     internal: true
@@ -249,23 +251,39 @@ tasks:
 
   # Ubuntu
 
-  ubuntu-22-04-20260515:
-    desc: "Ubuntu 22-04-20260515"
+  ubuntu-download:
+    desc: "Ubuntu Image Download"
+    cmds:
+      - mkdir -p file/
+      - curl --output-dir file -LO https://cloud-images.ubuntu.com/jammy/{{.UBUNTU22}}/jammy-server-cloudimg-amd64.qcow2
+      - curl --output-dir file -LO https://cloud-images.ubuntu.com/noble/{{.UBUNTU24}}/noble-server-cloudimg-amd64.qcow2
+      - curl --output-dir file -LO https://cloud-images.ubuntu.com/resolute/{{.UBUNTU26}}/resolute-server-cloudimg-amd64.qcow2
+
+  ubuntu-22-04-latest:
+    desc: "Ubuntu 22-04-{{.UBUNTU22}}"
     cmds:
       - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/jammy-server-cloudimg-amd64.qcow2
-      - uv run cml definitions images import definition -f definitions/ubuntu/image/ubuntu-22-04-20260515.yaml
+      - uv run cml definitions images import definition -f definitions/ubuntu/image/ubuntu-22-04-{{.UBUNTU22}}.yaml
 
-  ubuntu-24-04-20260518:
-    desc: "Ubuntu 24-04-20260518"
+  ubuntu-24-04-latest:
+    desc: "Ubuntu 24-04-{{.UBUNTU24}}"
     cmds:
       - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64.qcow2
-      - uv run cml definitions images import definition -f definitions/ubuntu/image/ubuntu-24-04-20260518.yaml
+      - uv run cml definitions images import definition -f definitions/ubuntu/image/ubuntu-24-04-{{.UBUNTU24}}.yaml
 
-  ubuntu-26-04-20260520:
-    desc: "Ubuntu 26-04-20260520"
+  ubuntu-26-04-latest:
+    desc: "Ubuntu 26-04-{{.UBUNTU26}}"
     cmds:
       - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/resolute-server-cloudimg-amd64.qcow2
-      - uv run cml definitions images import definition -f definitions/ubuntu/image/ubuntu-26-04-20260520.yaml
+      - uv run cml definitions images import definition -f definitions/ubuntu/image/ubuntu-26-04-{{.UBUNTU26}}.yaml
+
+  # Ubuntu Custom Images
+
+  ubuntu-custom-images-build:
+    desc: "Ubuntu-Extra/MGMT Custom Image Build"
+    cmds:
+      - task: ubuntu-extra-build
+      - task: ubuntu-mgmt-build
 
   # Ubuntu-Extra
 
@@ -274,23 +292,16 @@ tasks:
     cmds:
       - uv run cml definitions nodes import -f definitions/ubuntu-extra/node/ubuntu-extra.yaml
 
-  ubuntu-extra-24-04-20260323:
-    desc: "Ubuntu-Extra 24-04-20260323"
+  ubuntu-extra-build:
+    desc: "Ubuntu-Extra Custom Image Build"
     cmds:
-      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64-extra-20260323.qcow2
-      - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-24-04-20260323.yaml
+      - ./create-custom-ubuntu.sh extra {{.UBUNTU26}}
 
-  ubuntu-extra-24-04-20260518:
-    desc: "Ubuntu-Extra 24-04-20260518"
+  ubuntu-extra-26-04-latest:
+    desc: "Ubuntu-Extra 26-04-{{.UBUNTU26}}"
     cmds:
-      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/noble-server-cloudimg-amd64-extra-20260518.qcow2
-      - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-24-04-20260518.yaml
-
-  ubuntu-extra-26-04-20260520:
-    desc: "Ubuntu-Extra 26-04-20260520"
-    cmds:
-      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/resolute-server-cloudimg-amd64-extra-20260520.qcow2
-      - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-26-04-20260520.yaml
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/resolute-server-cloudimg-amd64-extra-{{.UBUNTU26}}.qcow2
+      - uv run cml definitions images import definition -f definitions/ubuntu-extra/image/ubuntu-extra-26-04-{{.UBUNTU26}}.yaml
 
   # Ubuntu-MGMT
 
@@ -299,11 +310,16 @@ tasks:
     cmds:
       - uv run cml definitions nodes import -f definitions/ubuntu-mgmt/node/ubuntu-mgmt.yaml
 
-  ubuntu-mgmt-26-04-20260520:
-    desc: "Ubuntu-MGMT 26-04-20260520"
+  ubuntu-mgmt-build:
+    desc: "Ubuntu-MGMT Custom Image Build"
     cmds:
-      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/resolute-server-cloudimg-amd64-mgmt-20260520.qcow2
-      - uv run cml definitions images import definition -f definitions/ubuntu-mgmt/image/ubuntu-mgmt-26-04-20260520.yaml
+      - ./create-custom-ubuntu.sh mgmt {{.UBUNTU26}}
+
+  ubuntu-mgmt-26-04-latest:
+    desc: "Ubuntu-MGMT 26-04-{{.UBUNTU26}}"
+    cmds:
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/ubuntu/resolute-server-cloudimg-amd64-mgmt-{{.UBUNTU26}}.qcow2
+      - uv run cml definitions images import definition -f definitions/ubuntu-mgmt/image/ubuntu-mgmt-26-04-{{.UBUNTU26}}.yaml
 
   # vJunos-Switch
 

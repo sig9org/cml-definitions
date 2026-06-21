@@ -2,7 +2,7 @@
 
 DIR="file"
 CODENAME="resolute"
-DATE="20260520"
+DATE=$2
 RESIZE="+1.5G"
 TYPE=$1
 SCRIPT="https://raw.githubusercontent.com/sig9org/cml-definitions/master/definitions/ubuntu-${TYPE}/script/ubuntu-${TYPE}.sh"
