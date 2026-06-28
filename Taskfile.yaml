@@ -7,7 +7,7 @@ dotenv: [".env"]
 vars:
   UBUNTU22: "20260627"
   UBUNTU24: "20260615"
-  UBUNTU26: "20260623"
+  UBUNTU26: "20260627"
 
 tasks:
   default:
