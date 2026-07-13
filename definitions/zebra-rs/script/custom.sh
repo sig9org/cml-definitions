@@ -12,9 +12,11 @@ rm -f /etc/apt/sources.list.d/zebra-rs.list
 apt-get update
 apt-get install -y --allow-downgrades zebra-rs=${ZEBRA_VERSION}
 
-useradd -m -g zebra-rs zebra
+useradd -m -g zebra-rs -G sudo -s /usr/bin/bash zebra
 echo "zebra:zebra" | chpasswd
-echo 'exec /usr/bin/vty' | tee -a /home/zebra/.bashrc
+echo 'exec /usr/bin/vty' | tee -a /home/zebra/.profile
+echo 'exit' > /home/zebra/.hushlogin
+chown -R zebra:zebra-rs:/home/zebra/
 
 # Disable AppArmor
 systemctl stop apparmor.service
