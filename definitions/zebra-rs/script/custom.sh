@@ -11,12 +11,17 @@ printf 'Types: deb\nURIs: %s\nSuites: ./\nSigned-By: %s\n' \
 rm -f /etc/apt/sources.list.d/zebra-rs.list
 apt-get update
 apt-get install -y --allow-downgrades zebra-rs=${ZEBRA_VERSION}
+systemctl enable --now zebra-rs.service
 
 useradd -m -g zebra-rs -G sudo -s /usr/bin/bash zebra
 echo "zebra:zebra" | chpasswd
 echo 'exec /usr/bin/vty' | tee -a /home/zebra/.profile
-echo 'exit' > /home/zebra/.hushlogin
 chown -R zebra:zebra-rs:/home/zebra/
+
+# Disable banner display upon login
+mkdir -p /etc/skel
+echo 'exit' > /etc/skel/.hushlogin
+chmod 644 /etc/skel/.hushlogin
 
 # Disable AppArmor
 systemctl stop apparmor.service
