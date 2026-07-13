@@ -8,6 +8,7 @@ vars:
   UBUNTU22: "20260706"
   UBUNTU24: "20260615"
   UBUNTU26: "20260627"
+  ZEBRA_VERSION: "26.7.4"
 
 tasks:
   default:
@@ -379,3 +380,21 @@ tasks:
       - task: win11-image
         vars:
           IMG_VER: "ja-jp_26100-240331-1435"
+
+  # zebra-rs
+
+  zebra-rs:
+    desc: "zebra-rs (Node)"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/zebra-rs/node/zebra-rs.yaml
+
+  zebra-rs-build:
+    desc: "zebra-rs Custom Image Build"
+    cmds:
+      - ./create-custom-zebra-rs.sh {{.UBUNTU26}} {{.ZEBRA_VERSION}}
+
+  zebra-rs-latest:
+    desc: "zebra-rs-{{.ZEBRA_VERSION}}"
+    cmds:
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/zebra-rs/zebra-rs-{{.ZEBRA_VERSION}}.qcow2
+      - uv run cml definitions images import definition -f definitions/zebra-rs/image/zebra-rs-{{.ZEBRA_VERSION}}.yaml
