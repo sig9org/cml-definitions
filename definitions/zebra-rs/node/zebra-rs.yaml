@@ -65,19 +65,19 @@ configuration:
           ssh_authorized_keys:
             - your-ssh-pubkey-line-goes-here
           runcmd:
-            - [ sh, -c, "echo 'exec /usr/bin/vty' | tee -a /home/zebra/.profile" ]
-            - [ sh, -c, "echo 'exit' > /home/zebra/.hushlogin" ]
-            - [ chown, "zebra:zebra-rs", "/home/zebra/.profile", "/home/zebra/.hushlogin" ]
-          bootcmd:
             - mkdir -p /etc/zebra-rs
+            - mkdir -p /mnt/cidata
             - |
-              mkdir -p /mnt/cidata
               mount -o ro /dev/sr0 /mnt/cidata || mount -o ro /dev/vdb /mnt/cidata || true
               if [ -f /mnt/cidata/zebra-rs.conf ]; then
                 cp /mnt/cidata/zebra-rs.conf /etc/zebra-rs/zebra-rs.conf
                 chmod 644 /etc/zebra-rs/zebra-rs.conf
+                chown root:root /etc/zebra-rs/zebra-rs.conf
               fi
               umount /mnt/cidata || true
+            - [ sh, -c, "echo 'exec /usr/bin/vty' | tee -a /home/zebra/.profile" ]
+            - [ sh, -c, "echo 'exit' > /home/zebra/.hushlogin" ]
+            - [ chown, "zebra:zebra-rs", "/home/zebra/.profile", "/home/zebra/.hushlogin" ]
         editable: true
       - name: network-config
         content: |
