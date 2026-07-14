@@ -17,6 +17,7 @@
     - [Ubuntu Cloud Images 22.04 Daily Build (Jammy Jellyfish)](https://cloud-images.ubuntu.com/jammy/)
     - [Ubuntu Cloud Images 24.04 LTS Daily Build (Noble Numbat)](https://cloud-images.ubuntu.com/noble/)
     - [Ubuntu Cloud Images 25.04 Daily Build (Plucky Puffin)](https://cloud-images.ubuntu.com/plucky/)
+    - [Ubuntu Server 26.04 (Resolute Raccoon) Daily Builds](https://cloud-images.ubuntu.com/resolute/)
 - VyOS
     - [VyOS nightly builds](https://vyos.net/get/nightly-builds/)
 - Windows

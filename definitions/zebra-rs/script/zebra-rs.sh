@@ -14,6 +14,63 @@ apt-get upgrade -y
 apt-get install -y --allow-downgrades zebra-rs=${ZEBRA_VERSION}
 systemctl enable --now zebra-rs.service
 
+useradd -m -g zebra-rs -G sudo -s /usr/bin/bash zebra
+echo "zebra:zebra" | chpasswd
+echo 'exec /usr/bin/vty' | tee -a /home/zebra/.profile
+echo 'exit' > /home/zebra/.hushlogin
+chown -R zebra:zebra-rs:/home/zebra/
+
+# Copy zebra-rs.conf
+cat << 'EOF' > /usr/local/bin/copy-zebra-config.sh
+#!/bin/bash
+set -e
+
+FLAG_FILE="/var/lib/zebra-rs-config-done"
+
+if [ -f "$FLAG_FILE" ]; then
+    echo "Zebra-rs config has already been provisioned. Skipping."
+    exit 0
+fi
+
+mkdir -p /etc/zebra-rs
+
+MNT_DIR="/mnt/cidata_temp"
+mkdir -p "$MNT_DIR"
+
+mount -o ro /dev/sr0 "$MNT_DIR" || mount -o ro /dev/vdb "$MNT_DIR" || mount -o ro /dev/disk/by-label/cidata "$MNT_DIR" || true
+
+if [ -f "$MNT_DIR/zebra-rs" ]; then
+    cp "$MNT_DIR/zebra-rs" /etc/zebra-rs/zebra-rs.conf
+    chmod 644 /etc/zebra-rs/zebra-rs.conf
+    chown root:root /etc/zebra-rs/zebra-rs.conf
+    systemctl restart zebra-rs.service
+
+    touch "$FLAG_FILE"
+    echo "Zebra-rs config provisioned successfully."
+fi
+
+umount "$MNT_DIR" || true
+rmdir "$MNT_DIR" || true
+EOF
+
+cat << 'EOF' > /etc/systemd/system/copy-zebra-config.service
+[Unit]
+Description=Copy zebra-rs configuration from CML CONFIG tab (Once on first boot)
+After=cloud-init.service
+ConditionPathExists=!/var/lib/zebra-rs-config-done
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/copy-zebra-config.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable copy-zebra-config.service
+
 # Disable AppArmor
 systemctl stop apparmor.service
 systemctl disable apparmor.service
