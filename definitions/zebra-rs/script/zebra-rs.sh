@@ -14,23 +14,11 @@ apt-get upgrade -y
 apt-get install -y --allow-downgrades zebra-rs=${ZEBRA_VERSION}
 systemctl enable --now zebra-rs.service
 
-useradd -m -g zebra-rs -G sudo -s /usr/bin/bash zebra
-echo "zebra:zebra" | chpasswd
-echo 'exec /usr/bin/vty' | tee -a /home/zebra/.profile
-echo 'exit' > /home/zebra/.hushlogin
-chown -R zebra:zebra-rs:/home/zebra/
-
-# Disable banner display upon login
-mkdir -p /etc/skel
-echo 'exit' > /etc/skel/.hushlogin
-chmod 644 /etc/skel/.hushlogin
-
 # Disable AppArmor
 systemctl stop apparmor.service
 systemctl disable apparmor.service
 
 # Timezone & NTP
-timedatectl set-timezone Asia/Tokyo
 cat << EOF >> /etc/systemd/timesyncd.conf
 NTP=162.159.200.123 162.159.200.1
 EOF
@@ -114,10 +102,6 @@ cat << 'EOF' > /etc/logrotate.d/syslog
  endscript
 }
 EOF
-
-# Install uncmnt
-curl -L https://github.com/sig9org/uncmnt/releases/download/v0.0.2/uncmnt_v0.0.2_linux_amd64 -o /usr/local/bin/uncmnt && \
-chmod 755 /usr/local/bin/uncmnt
 
 # Clean up
 apt clean all

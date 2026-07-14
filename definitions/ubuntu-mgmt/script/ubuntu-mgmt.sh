@@ -7,7 +7,7 @@ ufw disable
 # Basic settings
 add-apt-repository -y multiverse
 apt update
-apt -y upgrade
+apt upgrade -y
 DEBIAN_FRONTEND=noninteractive apt install -y \
   fping \
   nmap \
