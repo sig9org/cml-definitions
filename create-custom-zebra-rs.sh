@@ -4,11 +4,11 @@ DIR="file"
 CODENAME="resolute"
 DATE=$1
 RESIZE="+1.5G"
-SCRIPT="https://raw.githubusercontent.com/sig9org/cml-definitions/master/definitions/zebra-rs/script/custom.sh"
+SCRIPT="https://raw.githubusercontent.com/sig9org/cml-definitions/master/definitions/zebra-rs/script/zebra-rs.sh"
 ZEBRA_VERSION=$2
 
 echo "############################################################"
-echo "##### (1/x) Download the image and make a copy for work.."
+echo "##### (1/4) Download the image and make a copy for work.."
 echo "############################################################"
 
 mkdir -p ${DIR}/
@@ -20,14 +20,14 @@ cp ${DIR}/${CODENAME}-server-cloudimg-amd64.qcow2 \
 eza -hl file/*.qcow2
 
 echo "############################################################"
-echo "##### (2/x) Resize the image."
+echo "##### (2/4) Resize the image."
 echo "############################################################"
 
 qemu-img resize ${DIR}/${CODENAME}-server-cloudimg-amd64-tmp.qcow2 ${RESIZE}
 qemu-img info ${DIR}/${CODENAME}-server-cloudimg-amd64-tmp.qcow2
 
 echo "############################################################"
-echo "##### (3/x) Customize the image."
+echo "##### (3/4) Customize the image."
 echo "############################################################"
 
 virt-customize -v -x -a ${DIR}/${CODENAME}-server-cloudimg-amd64-tmp.qcow2 \
@@ -36,7 +36,7 @@ virt-customize -v -x -a ${DIR}/${CODENAME}-server-cloudimg-amd64-tmp.qcow2 \
   --run-command "curl -Ls ${SCRIPT} | bash -s ${ZEBRA_VERSION}"
 
 echo "############################################################"
-echo "##### (4/x) Compress images."
+echo "##### (4/4) Compress images."
 echo "############################################################"
 
 virt-sparsify --compress \

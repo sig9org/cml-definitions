@@ -5,6 +5,7 @@ curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | bash
 
 # Install basic packages
 apt update
+apt upgrade -y
 DEBIAN_FRONTEND=noninteractive apt install -y \
   axel \
   curl \

@@ -10,6 +10,7 @@ printf 'Types: deb\nURIs: %s\nSuites: ./\nSigned-By: %s\n' \
   | sudo tee /etc/apt/sources.list.d/zebra-rs.sources >/dev/null
 rm -f /etc/apt/sources.list.d/zebra-rs.list
 apt-get update
+apt-get upgrade -y
 apt-get install -y --allow-downgrades zebra-rs=${ZEBRA_VERSION}
 systemctl enable --now zebra-rs.service
 
