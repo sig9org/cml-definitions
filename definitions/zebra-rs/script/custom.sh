@@ -16,6 +16,7 @@ systemctl enable --now zebra-rs.service
 useradd -m -g zebra-rs -G sudo -s /usr/bin/bash zebra
 echo "zebra:zebra" | chpasswd
 echo 'exec /usr/bin/vty' | tee -a /home/zebra/.profile
+echo 'exit' > /home/zebra/.hushlogin
 chown -R zebra:zebra-rs:/home/zebra/
 
 # Disable banner display upon login
