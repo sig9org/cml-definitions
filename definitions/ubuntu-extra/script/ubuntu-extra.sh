@@ -14,6 +14,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y \
   git \
   gnupg \
   gpg \
+  gping \
   neovim \
   nmap \
   peco \

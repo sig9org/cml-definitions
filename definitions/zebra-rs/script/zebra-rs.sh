@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ZEBRA_USER=zebra-rs
 ZEBRA_VERSION=$1
 
 # Install zebra-rs
@@ -11,14 +12,21 @@ printf 'Types: deb\nURIs: %s\nSuites: ./\nSigned-By: %s\n' \
 rm -f /etc/apt/sources.list.d/zebra-rs.list
 apt-get update
 apt-get upgrade -y
-apt-get install -y --allow-downgrades zebra-rs=${ZEBRA_VERSION}
+apt-get install -y --allow-downgrades \
+  fping \
+  gping \
+  nmap \
+  traceroute \
+  tshark \
+  xh \
+  zebra-rs=${ZEBRA_VERSION}
 systemctl enable --now zebra-rs.service
 
-useradd -m -g zebra-rs -G sudo -s /usr/bin/bash zebra
-echo "zebra:zebra" | chpasswd
-echo 'exec /usr/bin/vty' | tee -a /home/zebra/.profile
-echo 'exit' > /home/zebra/.hushlogin
-chown -R zebra:zebra-rs:/home/zebra/
+useradd -m -g zebra-rs -G sudo -s /usr/bin/bash ${ZEBRA_USER}
+echo "${ZEBRA_USER}:${ZEBRA_USER}" | chpasswd
+echo 'exec /usr/bin/vty' | tee -a /home/${ZEBRA_USER}/.profile
+echo 'exit' > /home/${ZEBRA_USER}/.hushlogin
+chown -R ${ZEBRA_USER}:zebra-rs:/home/${ZEBRA_USER}/
 
 # Copy zebra-rs.conf
 cat << 'EOF' > /usr/local/bin/copy-zebra-config.sh
@@ -52,6 +60,8 @@ fi
 umount "$MNT_DIR" || true
 rmdir "$MNT_DIR" || true
 EOF
+
+chmod 755 /usr/local/bin/copy-zebra-config.sh
 
 cat << 'EOF' > /etc/systemd/system/copy-zebra-config.service
 [Unit]
