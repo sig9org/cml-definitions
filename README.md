@@ -2,7 +2,7 @@
 
 - AlmaLinux
     - [AlmaLinux9](https://repo.almalinux.org/almalinux/9/cloud/x86_64/images/)
-    - [AlmaLinux10.1](https://repo.almalinux.org/almalinux/10.1/cloud/x86_64_v2/images/)
+    - [AlmaLinux10](https://repo.almalinux.org/almalinux/10/cloud/x86_64_v2/images/)
 - CentOS
     - [CentOS6](https://cloud.centos.org/centos/6/images/)
     - [CentOS7](https://cloud.centos.org/centos/7/images/)
@@ -12,14 +12,16 @@
 - Debian
     - [Debian Official Cloud Images](https://cdimage.debian.org/images/cloud/)
 - SONiC
-    - [SONiC installation images](https://sonic.software/a)
+    - [SONiC installation images](https://sonic.software/)
 - Ubuntu
     - [Ubuntu Cloud Images 22.04 Daily Build (Jammy Jellyfish)](https://cloud-images.ubuntu.com/jammy/)
     - [Ubuntu Cloud Images 24.04 LTS Daily Build (Noble Numbat)](https://cloud-images.ubuntu.com/noble/)
     - [Ubuntu Cloud Images 25.04 Daily Build (Plucky Puffin)](https://cloud-images.ubuntu.com/plucky/)
-    - [Ubuntu Server 26.04 (Resolute Raccoon) Daily Builds](https://cloud-images.ubuntu.com/resolute/)
+    - [Ubuntu Cloud Images 26.04 LTS Daily Builds(Resolute Raccoon)](https://cloud-images.ubuntu.com/resolute/)
 - VyOS
     - [VyOS nightly builds](https://vyos.net/get/nightly-builds/)
 - Windows
     - [Windows 11 Enterprise](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-11-enterprise)
     - [VirtIO Driver](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/)
+- zebra-rs
+    - [zebra-rs Images for Cisco CML](https://s3.sig9.org/zebra-rs/index.html)
