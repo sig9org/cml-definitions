@@ -8,7 +8,7 @@ vars:
   UBUNTU22: "20260711"
   UBUNTU24: "20260705"
   UBUNTU26: "20260713"
-  ZEBRA_VERSION: "26.7.5"
+  ZEBRA_VERSION: "26.7.6"
 
 tasks:
   default:
