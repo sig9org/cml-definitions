@@ -2,12 +2,14 @@
 
 ZEBRA_USER=zebra-rs
 ZEBRA_VERSION=$1
+ARCH=$2
+CODENAME=$3
 
 # Install zebra-rs
 install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://zebra.rs/apt/zebra-rs-archive-keyring.asc | sudo tee /etc/apt/keyrings/zebra-rs.asc >/dev/null
 printf 'Types: deb\nURIs: %s\nSuites: ./\nSigned-By: %s\n' \
-  "https://github.com/zebra-rs/zebra-rs.github.io/releases/download/apt-resolute" "/etc/apt/keyrings/zebra-rs.asc" \
+  "https://github.com/zebra-rs/zebra-rs.github.io/releases/download/apt-${CODENAME}" "/etc/apt/keyrings/zebra-rs.asc" \
   | sudo tee /etc/apt/sources.list.d/zebra-rs.sources >/dev/null
 rm -f /etc/apt/sources.list.d/zebra-rs.list
 apt-get update
