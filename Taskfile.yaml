@@ -398,5 +398,5 @@ tasks:
   zebra-rs-latest:
     desc: "zebra-rs-{{.ZEBRA_VERSION}}"
     cmds:
-      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/zebra-rs/zebra-rs-{{.ZEBRA_VERSION}}.qcow2
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/zebra-rs/zebra-rs-amd64-{{.ZEBRA_VERSION}}.qcow2
       - uv run cml definitions images import definition -f definitions/zebra-rs/image/zebra-rs-{{.ZEBRA_VERSION}}.yaml
