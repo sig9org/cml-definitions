@@ -245,6 +245,12 @@ tasks:
     cmds:
       - uv run cml definitions nodes import -f definitions/sns-eva/node/sns-eva.yaml
 
+  sns-vm-3.5.1:
+    desc: "Stormshield Network Security 3.5.1"
+    cmds:
+      - uv run cml definitions images import image-file -f {{.DOC_ROOT}}/sns-eva/utm-SNS-VM-3.5.1.qcow2
+      - uv run cml definitions images import definition -f definitions/sns-eva/image/utm-SNS-VM-3.5.1.yaml
+
   sns-eva-4.2.1:
     desc: "Stormshield Network Security Elastic Virtual Appliance 4.2.1"
     cmds:

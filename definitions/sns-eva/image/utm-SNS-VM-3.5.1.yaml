@@ -1,0 +1,7 @@
+id: sns-vm-3-5-1
+label: SNS VM 3.5.1
+description: Stormshield Network Security 3.5.1
+node_definition_id: sns-eva
+disk_image: utm-SNS-VM-3.5.1.qcow2
+read_only: false
+schema_version: 0.0.1
