@@ -1,7 +1,7 @@
 id: sns-eva
 general:
   nature: server
-  description: Stormshield Network Security Elastic Virtual Appliance
+  description: SNS-EVA
   read_only: false
 device:
   interfaces:
@@ -21,10 +21,13 @@ device:
     min_count: 1
     default_count: 2
 ui:
+  group: Others
   visible: true
   label_prefix: sns-eva-
   icon: server
-  label: Stormshield Network Security Elastic Virtual Appliance
+  label: SNS-EVA
+  description: |
+    Stormshield Network Security Elastic Virtual Appliance
 sim:
   linux_native:
     libvirt_domain_driver: kvm
