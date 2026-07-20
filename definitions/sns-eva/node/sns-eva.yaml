@@ -1,7 +1,7 @@
 id: sns-eva
 general:
-  nature: server
-  description: SNS-EVA
+  nature: firewall
+  description: Stormshield Network Security
   read_only: false
 device:
   interfaces:
@@ -24,10 +24,15 @@ ui:
   group: Others
   visible: true
   label_prefix: sns-eva-
-  icon: server
-  label: SNS-EVA
+  icon: firewall
+  label: Stormshield Network Security
   description: |
     Stormshield Network Security Elastic Virtual Appliance
+
+    1 GB DRAM, 1 vCPU (can be adjusted)
+
+    WebUI Username / Password:
+    admin / admin
 sim:
   linux_native:
     libvirt_domain_driver: kvm
@@ -39,7 +44,7 @@ sim:
     nic_driver: virtio
 boot:
   completed:
-    - 'login:'
+    - 'NS-BSD/'
   timeout: 300
   uses_regex: false
 inherited:
