@@ -17,6 +17,21 @@ tasks:
     cmds:
       - task --list
 
+  _time-start:
+    internal: true
+    cmds:
+      - python3 -c 'import time; print(int(time.time() * 1000))' > .task_start_time
+
+  _time-end:
+    internal: true
+    cmds:
+      - |
+        start=$(cat .task_start_time 2>/dev/null || echo 0)
+        end=$(python3 -c 'import time; print(int(time.time() * 1000))')
+        elapsed_ms=$((end - start))
+        python3 -c "g='\033[32m'; n='\033[0m'; p='======================================== '; ms=$elapsed_ms; s=ms//1000; r=ms%1000; print(f'{g}{p}Elapsed: {s} second{\"s\" if s!=1 else \"\"} {r} millisecond{\"s\" if r!=1 else \"\"}{n}') if s>0 else print(f'{g}{p}Elapsed: {r} millisecond{\"s\" if r!=1 else \"\"}{n}')"
+        rm -f .task_start_time
+
   _clean:
     aliases: [c]
     desc: Clean up
@@ -299,7 +314,9 @@ tasks:
   ubuntu-extra-build:
     desc: "Ubuntu-Extra Custom Image Build"
     cmds:
+      - task: _time-start
       - ./create-ubuntu.sh extra {{.UBUNTU26}}
+      - task: _time-end
 
   ubuntu-extra-26-04-latest:
     desc: "Ubuntu-Extra 26-04-{{.UBUNTU26}}"
@@ -317,7 +334,9 @@ tasks:
   ubuntu-mgmt-build:
     desc: "Ubuntu-MGMT Custom Image Build"
     cmds:
+      - task: _time-start
       - ./create-ubuntu.sh mgmt {{.UBUNTU26}}
+      - task: _time-end
 
   ubuntu-mgmt-26-04-latest:
     desc: "Ubuntu-MGMT 26-04-{{.UBUNTU26}}"
@@ -393,7 +412,9 @@ tasks:
   zebra-rs-build:
     desc: "zebra-rs Custom Image Build"
     cmds:
+      - task: _time-start
       - ./create-zebra-rs.sh {{.UBUNTU26}} {{.ZEBRA_VERSION}} {{.ARCH}}
+      - task: _time-end
 
   zebra-rs-latest:
     desc: "zebra-rs-{{.ZEBRA_VERSION}}"
