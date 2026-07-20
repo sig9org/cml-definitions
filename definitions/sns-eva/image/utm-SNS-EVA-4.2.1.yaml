@@ -1,0 +1,7 @@
+id: sns-eva-4-2-1
+label: Stormshield Network Security Elastic Virtual Appliance 4.2.1
+description: Stormshield Network Security Elastic Virtual Appliance 4.2.1
+node_definition_id: sns-eva
+disk_image: utm-SNS-EVA-4.2.1-kvm.qcow2
+read_only: false
+schema_version: 0.0.1
