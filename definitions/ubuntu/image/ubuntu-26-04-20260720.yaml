@@ -1,0 +1,7 @@
+id: ubuntu-26-04-20260720
+label: Ubuntu 26.04 - 20 Jul 2026
+description: Ubuntu 26.04 - 20 Jul 2026
+node_definition_id: ubuntu
+disk_image: resolute-server-cloudimg-amd64.qcow2
+read_only: false
+schema_version: 0.0.1

@@ -8,7 +8,7 @@ vars:
   ARCH: amd64
   UBUNTU22: "20260711"
   UBUNTU24: "20260705"
-  UBUNTU26: "20260717"
+  UBUNTU26: "20260720"
   ZEBRA_VERSION: "26.7.7"
 
 tasks:
@@ -272,19 +272,19 @@ tasks:
           IMG_FILE: "{{.DOC_ROOT}}/cisco/te/thousandeyes-va-{{.IMG_VER}}.qcow2"
           IMG_DEF: "definitions/thousandeyes-va/image/thousandeyes-va-{{.IMG_VER}}.yaml"
 
-  thousandeyes-va-0.263.0:
-    desc: "ThousandEyes-VA 0.263.0"
-    cmds:
-      - task: thousandeyes-va-image
-        vars:
-          IMG_VER: "0.263.0"
-
   thousandeyes-va-0.264.0:
     desc: "ThousandEyes-VA 0.264.0"
     cmds:
       - task: thousandeyes-va-image
         vars:
           IMG_VER: "0.264.0"
+
+  thousandeyes-va-0.266.0:
+    desc: "ThousandEyes-VA 0.266.0"
+    cmds:
+      - task: thousandeyes-va-image
+        vars:
+          IMG_VER: "0.266.0"
 
   # Ubuntu
 
