@@ -6,7 +6,7 @@ dotenv: [".env"]
 
 vars:
   ARCH: amd64
-  UBUNTU22: "20260725"
+  UBUNTU22: "20260727"
   UBUNTU24: "20260725"
   UBUNTU26: "20260720"
   ZEBRA_VERSION: "26.7.8"
