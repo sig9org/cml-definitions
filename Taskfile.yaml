@@ -6,10 +6,10 @@ dotenv: [".env"]
 
 vars:
   ARCH: amd64
-  UBUNTU22: "20260802"
+  UBUNTU22: "20260810"
   UBUNTU24: "20260801"
   UBUNTU26: "20260731"
-  ZEBRA_VERSION: "26.8.2"
+  ZEBRA_VERSION: "26.8.3"
 
 tasks:
   default:
