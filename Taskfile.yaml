@@ -250,7 +250,7 @@ tasks:
     cmds:
       - task: upload-iamge
         vars:
-          IMG_FILE: "{{.DOC_ROOT}}/nxosv9000/nexus9300v64.{{.IMG_VER}}.qcow2"
+          IMG_FILE: "{{.DOC_ROOT}}/cisco/nxosv9000/nexus9300v64.{{.IMG_VER}}.qcow2"
           IMG_DEF: "definitions/nxosv9000/image/nxosv9300v64.{{.IMG_VER}}.yaml"
 
   nxosv9300_10_4_6_M:
