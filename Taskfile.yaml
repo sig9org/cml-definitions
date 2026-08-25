@@ -267,6 +267,13 @@ tasks:
         vars:
           IMG_VER: "10.4.7.M"
 
+  nxosv9300_10_4_8_M:
+    desc: "NX-OS 9300v 10.4.8.M"
+    cmds:
+      - task: nxosv9300-image
+        vars:
+          IMG_VER: "10.4.8.M"
+
   nxosv9300_10_6_4_M:
     desc: "NX-OS 9300v 10.6.4.M"
     cmds:
