@@ -1,0 +1,7 @@
+id: nxosv9300-10-6-2-f
+node_definition_id: nxosv9000
+description: NX-OS 9300v 10.6.2.F
+label: NX-OS 9300v 10.6.2.F
+read_only: false
+schema_version: 0.0.1
+disk_image: nexus9300v64.10.6.2.F.qcow2

@@ -238,6 +238,28 @@ tasks:
         vars:
           IMG_VER: "7.6.6"
 
+  # Cisco Nexus 9000v Switch
+
+  nxosv9000:
+    desc: "Cisco Nexus 9000v Switch (Node)"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/nxosv9000/node/nxosv9000.yaml
+
+  nxosv9300-image:
+    internal: true
+    cmds:
+      - task: upload-iamge
+        vars:
+          IMG_FILE: "{{.DOC_ROOT}}/nxosv9000/nexus9300v64.{{.IMG_VER}}.qcow2"
+          IMG_DEF: "definitions/nxosv9000/image/nxosv9300v64.{{.IMG_VER}}.yaml"
+
+  nxosv9300_10_4_6_M:
+    desc: "NX-OS 9300v 10.4.6.M"
+    cmds:
+      - task: nxosv9300-image
+        vars:
+          IMG_VER: "10.4.6.M"
+
   # Stormshield Network Security Elastic Virtual Appliance
 
   sns-eva:
