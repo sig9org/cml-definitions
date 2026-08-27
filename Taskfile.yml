@@ -2,7 +2,11 @@
 
 version: "3"
 
-dotenv: [".env"]
+dotenv:
+  - '.env'
+  - 'project.ini'
+
+silent: true
 
 vars:
   ARCH: amd64
