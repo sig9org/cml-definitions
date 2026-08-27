@@ -6,10 +6,23 @@ dotenv: [".env"]
 
 vars:
   ARCH: amd64
-  UBUNTU22: "20260810"
-  UBUNTU24: "20260801"
-  UBUNTU26: "20260731"
-  ZEBRA_VERSION: "26.8.3"
+  UBUNTU22: "20260826"
+  UBUNTU24: "20260826"
+  UBUNTU26: "20260823"
+  ZEBRA_VERSION: "26.8.4"
+
+  CLEANUP_DIRS:
+    - .idea
+    - .terraform
+    - .vscode
+  CLEANUP_FILES:
+    - .DS_Store
+    - .terraform.lock.hcl
+    - terraform.tfstate
+    - terraform.tfstate.backup
+    - Desktop.ini
+    - Thumbs.db
+  START_TIME: '{{now.UnixMilli}}'
 
 tasks:
   default:
@@ -17,54 +30,65 @@ tasks:
     cmds:
       - task --list
 
-  _time-start:
-    internal: true
+  cleanup:
+    aliases: [c]
+    desc: 'Cleanup unnecessary files'
     cmds:
-      - python3 -c 'import time; print(int(time.time() * 1000))' > .task_start_time
+      - defer:
+          task: time
+          vars:
+            START_TIME: '{{.START_TIME}}'
+      - task: cleanup:shell
+      - task: cleanup:win
 
-  _time-end:
+  cleanup:shell:
     internal: true
+    dir: '{{.USER_WORKING_DIR}}'
+    platforms: [darwin, linux]
+    cmds:
+      - for: { var: CLEANUP_DIRS }
+        cmd: find . -type d -name "{{.ITEM}}" -print -prune -exec rm -rf {} + | sed 's/^/[DELETE]/'
+      - for: { var: CLEANUP_FILES }
+        cmd: find . -name "{{.ITEM}}" -print -delete | sed 's/^/[DELETE]/'
+
+  cleanup:win:
+    internal: true
+    dir: '{{.USER_WORKING_DIR}}'
+    platforms: [windows]
+    cmds:
+      - for: { var: CLEANUP_DIRS }
+        cmd: powershell -NoProfile -Command "Get-ChildItem -Path . -Recurse -Directory -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -eq '{{.ITEM}}' } | Sort-Object FullName -Descending | ForEach-Object { Write-Output ('[DELETE]' + $_.FullName); Remove-Item -LiteralPath $_.FullName -Recurse -Force }"
+      - for: { var: CLEANUP_FILES }
+        cmd: powershell -NoProfile -Command "Get-ChildItem -Path . -Recurse -File -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -eq '{{.ITEM}}' } | ForEach-Object { Write-Output ('[DELETE]' + $_.FullName); Remove-Item -LiteralPath $_.FullName -Force }"
+
+  time:
+    internal: true
+    vars:
+      END_TIME: '{{now.UnixMilli}}'
     cmds:
       - |
-        start=$(cat .task_start_time 2>/dev/null || echo 0)
-        end=$(python3 -c 'import time; print(int(time.time() * 1000))')
-        elapsed_ms=$((end - start))
-        python3 -c "g='\033[32m'; n='\033[0m'; p='======================================== '; ms=$elapsed_ms; s=ms//1000; r=ms%1000; print(f'{g}{p}Elapsed: {s} second{\"s\" if s!=1 else \"\"} {r} millisecond{\"s\" if r!=1 else \"\"}{n}') if s>0 else print(f'{g}{p}Elapsed: {r} millisecond{\"s\" if r!=1 else \"\"}{n}')"
-        rm -f .task_start_time
+        ELAPSED_MS=$(({{.END_TIME}} - {{.START_TIME}}))
+        MINUTES=$((ELAPSED_MS / 60000))
+        SECONDS=$((ELAPSED_MS % 60000 / 1000))
+        MILLIS=$((ELAPSED_MS % 1000))
+        GREEN='\033[0;32m'
+        RESET='\033[0m'
+        if [ "$MINUTES" -gt 0 ]; then
+          printf '%b======================================== Elapsed: %s min %s sec %s msec%b\n' "$GREEN" "$MINUTES" "$SECONDS" "$MILLIS" "$RESET"
+        elif [ "$SECONDS" -gt 0 ]; then
+          printf '%b======================================== Elapsed: %s sec %s msec%b\n' "$GREEN" "$SECONDS" "$MILLIS" "$RESET"
+        else
+          printf '%b======================================== Elapsed: %s msec%b\n' "$GREEN" "$MILLIS" "$RESET"
+        fi
 
-  _clean:
-    aliases: [c]
-    desc: Clean up
-    dir: "{{.USER_WORKING_DIR}}"
+  uv-sync:
+    aliases: [us]
+    desc: 'Sync dependencies and upgrade all packages'
     cmds:
-      - task: _clean-mac
-
-  _clean-mac:
-    internal: true
-    platforms: [darwin]
-    cmds:
-      - find . -type d -name ".terraform" -prune -exec rm -rf {} +
-      - find . -name ".DS_Store" -delete
-      - find . -name ".terraform.lock.hcl" -delete
-      - find . -name "terraform.tfstate" -delete
-      - find . -name "terraform.tfstate.backup" -delete
-
-  _license:
-    desc: "Work with product licensing"
-    cmds:
-      - uv run cml license show
-
-  _ls:
-    aliases: [l]
-    desc: "Lists running labs and optionally those in the cache"
-    cmds:
-      - uv run cml ls
-
-  _upgrade:
-    aliases: [u]
-    desc: Upgrade
-    dir: "{{.USER_WORKING_DIR}}"
-    cmds:
+      - defer:
+          task: time
+          vars:
+            START_TIME: '{{.START_TIME}}'
       - uv sync --upgrade
 
   upload-iamge:
@@ -376,9 +400,11 @@ tasks:
   ubuntu-extra-build:
     desc: "Ubuntu-Extra Custom Image Build"
     cmds:
-      - task: _time-start
+      - defer:
+          task: time
+          vars:
+            START_TIME: '{{.START_TIME}}'
       - ./create-ubuntu.sh extra {{.UBUNTU26}}
-      - task: _time-end
 
   ubuntu-extra-26-04-latest:
     desc: "Ubuntu-Extra 26-04-{{.UBUNTU26}}"
@@ -396,9 +422,11 @@ tasks:
   ubuntu-mgmt-build:
     desc: "Ubuntu-MGMT Custom Image Build"
     cmds:
-      - task: _time-start
+      - defer:
+          task: time
+          vars:
+            START_TIME: '{{.START_TIME}}'
       - ./create-ubuntu.sh mgmt {{.UBUNTU26}}
-      - task: _time-end
 
   ubuntu-mgmt-26-04-latest:
     desc: "Ubuntu-MGMT 26-04-{{.UBUNTU26}}"
@@ -474,9 +502,11 @@ tasks:
   zebra-rs-build:
     desc: "zebra-rs Custom Image Build"
     cmds:
-      - task: _time-start
+      - defer:
+          task: time
+          vars:
+            START_TIME: '{{.START_TIME}}'
       - ./create-zebra-rs.sh {{.UBUNTU26}} {{.ZEBRA_VERSION}} {{.ARCH}}
-      - task: _time-end
 
   zebra-rs-latest:
     desc: "zebra-rs-{{.ZEBRA_VERSION}}"
