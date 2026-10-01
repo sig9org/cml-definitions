@@ -157,10 +157,10 @@ tasks:
     cmds:
       - task: upload-iamge
         vars:
-          IMG_FILE: "{{.DOC_ROOT}}/cisco/cat8000v/c8000v-universalk9_8G_serial.{{.IMG_VER}}.qcow2"
+          IMG_FILE: "{{.DOC_ROOT}}/cisco/iosxe/cat8000v/c8000v-universalk9_8G_serial.{{.IMG_VER}}.qcow2"
           IMG_DEF: "definitions/cat8000v/image/cat8000v-.{{.IMG_VER}}.yaml"
 
-  cat8000v_26_02_01:
+  cat8000v-26.02.01:
     desc: "Cat8000V 26.02.01"
     cmds:
       - task: cat8000v-image
