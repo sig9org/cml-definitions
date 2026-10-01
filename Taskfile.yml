@@ -10,9 +10,9 @@ silent: true
 
 vars:
   ARCH: amd64
-  UBUNTU22: "20260918"
-  UBUNTU24: "20260911"
-  UBUNTU26: "20260921"
+  UBUNTU22: "20260926"
+  UBUNTU24: "20260926"
+  UBUNTU26: "20260927"
   ZEBRA_VERSION: "26.9.2"
 
   CLEANUP_DIRS:
@@ -144,6 +144,28 @@ tasks:
       - task: aruba-cx-image
         vars:
           IMG_VER: "10_04_1000"
+
+  # Cisco Catalyst 8000V
+
+  cat8000v:
+    desc: "Cisco Catalyst 8000V (Node)"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/cat8000v/node/cat8000v.yaml
+
+  cat8000v-image:
+    internal: true
+    cmds:
+      - task: upload-iamge
+        vars:
+          IMG_FILE: "{{.DOC_ROOT}}/cisco/cat8000v/c8000v-universalk9_8G_serial.{{.IMG_VER}}.qcow2"
+          IMG_DEF: "definitions/cat8000v/image/cat8000v-.{{.IMG_VER}}.yaml"
+
+  cat8000v_26_02_01:
+    desc: "Cat8000V 26.02.01"
+    cmds:
+      - task: cat8000v-image
+        vars:
+          IMG_VER: "26.02.01"
 
   # F5 BIG-IP VE
 

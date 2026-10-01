@@ -1,0 +1,6 @@
+id: cat8000v-26-02-01
+node_definition_id: cat8000v
+description: Cat 8000v 26.02.01
+label: Cat 8000v 26.02.01
+schema_version: 0.0.1
+disk_image: c8000v-universalk9_8G_serial.26.02.01.qcow2
