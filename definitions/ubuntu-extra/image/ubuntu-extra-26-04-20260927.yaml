@@ -1,5 +1,5 @@
 id: ubuntu-extra-26-04-20260927
-label: Ubuntu 26.04 Extra - 27 Setp 2026
+label: Ubuntu 26.04 Extra - 27 Sep 2026
 description: Ubuntu 26.04 Extra - 27 Sep 2026
 node_definition_id: ubuntu-extra
 disk_image: resolute-server-cloudimg-amd64-extra-20260927.qcow2
