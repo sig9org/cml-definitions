@@ -365,19 +365,19 @@ tasks:
           IMG_FILE: "{{.DOC_ROOT}}/cisco/te/thousandeyes-va-{{.IMG_VER}}.qcow2"
           IMG_DEF: "definitions/thousandeyes-va/image/thousandeyes-va-{{.IMG_VER}}.yaml"
 
-  thousandeyes-va-0.264.0:
-    desc: "ThousandEyes-VA 0.264.0"
-    cmds:
-      - task: thousandeyes-va-image
-        vars:
-          IMG_VER: "0.264.0"
-
   thousandeyes-va-0.266.0:
     desc: "ThousandEyes-VA 0.266.0"
     cmds:
       - task: thousandeyes-va-image
         vars:
           IMG_VER: "0.266.0"
+
+  thousandeyes-va-0.269.0:
+    desc: "ThousandEyes-VA 0.269.0"
+    cmds:
+      - task: thousandeyes-va-image
+        vars:
+          IMG_VER: "0.269.0"
 
   # Ubuntu
 
