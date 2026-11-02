@@ -145,6 +145,28 @@ tasks:
         vars:
           IMG_VER: "10_04_1000"
 
+  # Cisco ASAv
+
+  asav:
+    desc: "Cisco ASAv (Node)"
+    cmds:
+      - uv run cml definitions nodes import -f definitions/asav/node/asav.yaml
+
+  asav-image:
+    internal: true
+    cmds:
+      - task: upload-iamge
+        vars:
+          IMG_FILE: "{{.DOC_ROOT}}/cisco/asa/asav/asav{{.IMG_VER}}.qcow2"
+          IMG_DEF: "definitions/asav/image/asav-{{.IMG_VER}}.yaml"
+
+  asav-9.24.10:
+    desc: "ASAv 9.24.10"
+    cmds:
+      - task: asav-image
+        vars:
+          IMG_VER: "9-24-10"
+
   # Cisco Catalyst 8000V
 
   cat8000v:
